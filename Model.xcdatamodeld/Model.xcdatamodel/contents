@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Contact" representedClassName="Contact" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="addressAudioPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="album" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="creatDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="defaultImagePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameAudioPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="telephoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="telephoneNumberAudioPath" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Contact" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>

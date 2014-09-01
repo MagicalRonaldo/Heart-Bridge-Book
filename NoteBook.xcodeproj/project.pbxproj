@@ -11,7 +11,6 @@
 		4903F119188788FB00654C5C /* 08.png in Resources */ = {isa = PBXBuildFile; fileRef = 4903F118188788FB00654C5C /* 08.png */; };
 		4905E93F188E191500DFC415 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4905E93E188E191500DFC415 /* CoreData.framework */; };
 		4905E942188E1AC400DFC415 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4905E940188E1AC400DFC415 /* Model.xcdatamodeld */; };
-		4908DA3518BAE21000A75F80 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4908DA3418BAE21000A75F80 /* Icon@2x.png */; };
 		4908DA4418BAE23500A75F80 /* record_animate_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 4908DA3618BAE23400A75F80 /* record_animate_01.png */; };
 		4908DA4518BAE23500A75F80 /* record_animate_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 4908DA3718BAE23400A75F80 /* record_animate_02.png */; };
 		4908DA4618BAE23500A75F80 /* record_animate_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 4908DA3818BAE23400A75F80 /* record_animate_03.png */; };
@@ -49,6 +48,8 @@
 		490D03AF18754B760094AD0F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 490D03AD18754B760094AD0F /* InfoPlist.strings */; };
 		490D03B118754B760094AD0F /* NoteBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 490D03B018754B760094AD0F /* NoteBookTests.m */; };
 		490D03CB187550C00094AD0F /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 490D03C9187550C00094AD0F /* ContactCell.m */; };
+		4918F2EC19B4AD9100A8C686 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4918F2EA19B4AD9100A8C686 /* Icon.png */; };
+		4918F2ED19B4AD9100A8C686 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4918F2EB19B4AD9100A8C686 /* Icon@2x.png */; };
 		491BFCBD187E3B290018FFD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491BFCBC187E3B290018FFD4 /* Main.storyboard */; };
 		4928635A18B4A11C000C11F2 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4928635918B4A11C000C11F2 /* ShowViewController.m */; };
 		497E82A518AE320200393EA3 /* ImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497E82A418AE320200393EA3 /* ImageCropperViewController.m */; };
@@ -72,7 +73,6 @@
 		4903F118188788FB00654C5C /* 08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 08.png; sourceTree = "<group>"; };
 		4905E93E188E191500DFC415 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4905E941188E1AC400DFC415 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		4908DA3418BAE21000A75F80 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		4908DA3618BAE23400A75F80 /* record_animate_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = record_animate_01.png; path = pictures/record_animate_01.png; sourceTree = "<group>"; };
 		4908DA3718BAE23400A75F80 /* record_animate_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = record_animate_02.png; path = pictures/record_animate_02.png; sourceTree = "<group>"; };
 		4908DA3818BAE23400A75F80 /* record_animate_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = record_animate_03.png; path = pictures/record_animate_03.png; sourceTree = "<group>"; };
@@ -125,6 +125,8 @@
 		490D03B018754B760094AD0F /* NoteBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteBookTests.m; sourceTree = "<group>"; };
 		490D03C9187550C00094AD0F /* ContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCell.m; sourceTree = "<group>"; };
 		490D03CA187550C00094AD0F /* ContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCell.h; sourceTree = "<group>"; };
+		4918F2EA19B4AD9100A8C686 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		4918F2EB19B4AD9100A8C686 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		491BFCBC187E3B290018FFD4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4928635818B4A11C000C11F2 /* ShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowViewController.h; sourceTree = "<group>"; };
 		4928635918B4A11C000C11F2 /* ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
@@ -299,7 +301,8 @@
 		497E82A918AE334000393EA3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				4908DA3418BAE21000A75F80 /* Icon@2x.png */,
+				4918F2EA19B4AD9100A8C686 /* Icon.png */,
+				4918F2EB19B4AD9100A8C686 /* Icon@2x.png */,
 				4903F118188788FB00654C5C /* 08.png */,
 			);
 			name = Images;
@@ -429,10 +432,11 @@
 				490D039E18754B760094AD0F /* Images.xcassets in Resources */,
 				4908DA4918BAE23500A75F80 /* record_animate_06.png in Resources */,
 				4908DA4D18BAE23500A75F80 /* record_animate_10.png in Resources */,
-				4908DA3518BAE21000A75F80 /* Icon@2x.png in Resources */,
+				4918F2EC19B4AD9100A8C686 /* Icon.png in Resources */,
 				4908DA4E18BAE23500A75F80 /* record_animate_11.png in Resources */,
 				4908DA4C18BAE23500A75F80 /* record_animate_09.png in Resources */,
 				4908DA5118BAE23500A75F80 /* record_animate_14.png in Resources */,
+				4918F2ED19B4AD9100A8C686 /* Icon@2x.png in Resources */,
 				4908DA4518BAE23500A75F80 /* record_animate_02.png in Resources */,
 				490D038D18754B760094AD0F /* InfoPlist.strings in Resources */,
 				490A48FF1891078F001AC8B2 /* AGImagePickerController.bundle in Resources */,

@@ -40,6 +40,8 @@ typedef NS_ENUM(NSInteger, SWCellState)
 
 @property (nonatomic, weak) id <SWTableViewCellDelegate> delegate;
 
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons;
+
 - (void)setRightUtilityButtons:(NSArray *)rightUtilityButtons WithButtonWidth:(CGFloat) width;
 - (void)setLeftUtilityButtons:(NSArray *)leftUtilityButtons WithButtonWidth:(CGFloat) width;
 - (void)hideUtilityButtonsAnimated:(BOOL)animated;

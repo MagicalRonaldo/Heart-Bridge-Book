@@ -14,11 +14,12 @@
 
 #define ENTITY_NAME @"Contact"
 #define SORT_DESCRIPTION_CREATE_DATE @"createDate"
+#define CELL_HEIGHT 150.0
 
 @interface HomeViewController ()
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
-@property (nonatomic, strong) NSInteger recordTag;
+@property (nonatomic) NSInteger recordTag;
 @property (nonatomic, strong) UITableView *contactTableView;
 
 @end
@@ -28,12 +29,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self updateContactData];
+    self.contactTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 20 - 50) style:UITableViewStylePlain];
+    
+    self.contactTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.contactTableView setDelegate:self];
+    [self.contactTableView setDataSource:self];
+    self.contactTableView.backgroundColor = [UIColor clearColor];
+    self.contactTableView.rowHeight = CELL_HEIGHT;
+    [self.contactTableView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
+    
+    [self.view addSubview:self.contactTableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
     [super viewWillAppear:animated];
     [self updateContactData];
     [self.contactTableView reloadData];
@@ -57,10 +66,28 @@
     return self.dataArray.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CELL_HEIGHT;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifier = @"Cell";
-    ContactCell *cell = ;
+    static NSString *identifier = @"identifierCell";
+    ContactCell *cell;
+    
+    NSArray *rightBtnarr = [self rightButtons];
+    NSArray *leftBtnarr = [self leftButtons];
+    
+    if (cell == nil) {
+        cell = [[ContactCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                    reuseIdentifier:identifier
+                                                containingTableView:tableView
+                                                 leftUtilityButtons:leftBtnarr
+                                                rightUtilityButtons:rightBtnarr];
+
+    }
+;
     Contact *contact = self.dataArray[indexPath.row];
     cell.contactName.text = contact.name;
     cell.contactTele.text = contact.telephoneNumber;
@@ -90,18 +117,19 @@
     return cell;
 }
 
-#pragma  mark -optionIBAction
-- (IBAction)option:(id)sender {
-    UIButton *button = (UIButton*)sender;
-    int tagNumber = button.tag;
-    self.indexPath = [NSIndexPath indexPathForRow:tagNumber inSection:0];
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"对该联系人操作" delegate:self
-                                                    cancelButtonTitle:@"取          消"
-                                               destructiveButtonTitle:@"删 除 信 息"
-                                                    otherButtonTitles:@"编 辑 信 息",nil];
-    
-    actionSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
-    [actionSheet showInView:self.view];
+- (NSArray *)rightButtons
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray array];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor yellowColor] title:@"编辑"];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor redColor] title:@"删除"];
+    return rightUtilityButtons;
+}
+
+- (NSArray *)leftButtons
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray array];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor brownColor] title:@"删除"];
+    return rightUtilityButtons;
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -115,10 +143,8 @@
 }
 
 - (void)deleteItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.contactTableView performBatchUpdates:^{
-        [self deleteItemsFromDataSourceAtIndexPath:indexPath];
-        [self.contactTableView deleteItemsAtIndexPaths:@[indexPath]];
-    } completion:nil];
+    [self deleteItemsFromDataSourceAtIndexPath:indexPath];
+    [self.contactTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
     [self.contactTableView reloadData];
 }
 
@@ -180,7 +206,7 @@
 - (NSURL *)chooseUrl:(int)tag {
     NSURL *url;
     Contact *contact = self.dataArray[tag];
-    switch (recordTag) {
+    switch (self.recordTag) {
         case 1:{
             url = [NSURL URLWithString:contact.nameAudioPath];
             break;
@@ -200,19 +226,19 @@
 #pragma mark - tapGesture
 - (void)nameTapped:(UITapGestureRecognizer *)sender {
     int tag = [sender view].tag;
-    recordTag = 1;
+    self.recordTag = 1;
     [self playAudio:tag];
 }
 
 - (void)telephoneTapped:(UITapGestureRecognizer *)sender {
     int tag = [sender view].tag;
-    recordTag = 2;
+    self.recordTag = 2;
     [self playAudio:tag];
 }
 
 - (void)addressTapped:(UITapGestureRecognizer *)sender {
     int tag = [sender view].tag;
-    recordTag = 3;
+    self.recordTag = 3;
     [self playAudio:tag];
 }
 

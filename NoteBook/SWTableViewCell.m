@@ -30,6 +30,8 @@
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 
+@property (nonatomic) CGFloat height;
+
 - (CGFloat)leftUtilityButtonsWidth;
 - (CGFloat)rightUtilityButtonsWidth;
 - (CGFloat)utilityButtonsPadding;
@@ -46,6 +48,22 @@
 }
 
 #pragma mark Initializers
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier containingTableView:(UITableView *)containingTableView leftUtilityButtons:(NSArray *)leftUtilityButtons rightUtilityButtons:(NSArray *)rightUtilityButtons
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self)
+    {
+        self.height = containingTableView.rowHeight;
+        self.containingTableView = containingTableView;
+        self.highlighted = NO;
+        [self initializer];
+        self.rightUtilityButtons = rightUtilityButtons;
+        self.leftUtilityButtons = leftUtilityButtons;
+    }
+    
+    return self;
+}
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {

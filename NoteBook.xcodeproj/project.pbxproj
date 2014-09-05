@@ -67,6 +67,7 @@
 		49D4250A19B99BDA0043DD5C /* HBNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4250919B99BDA0043DD5C /* HBNavigationControllerViewController.m */; };
 		49D4250D19B9A2700043DD5C /* UIImage+HB.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4250C19B9A2700043DD5C /* UIImage+HB.m */; };
 		49D4251119B9C9CF0043DD5C /* UIView+HB.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4251019B9C9CF0043DD5C /* UIView+HB.m */; };
+		49D4251319B9D3950043DD5C /* button_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D4251219B9D3950043DD5C /* button_blue@2x.png */; };
 		49DDD3AD1883A8E500761532 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DDD3AC1883A8E500761532 /* AddViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -173,6 +174,7 @@
 		49D4250C19B9A2700043DD5C /* UIImage+HB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+HB.m"; sourceTree = "<group>"; };
 		49D4250F19B9C9CF0043DD5C /* UIView+HB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HB.h"; sourceTree = "<group>"; };
 		49D4251019B9C9CF0043DD5C /* UIView+HB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HB.m"; sourceTree = "<group>"; };
+		49D4251219B9D3950043DD5C /* button_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_blue@2x.png"; sourceTree = "<group>"; };
 		49DDD3AB1883A8E500761532 /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		49DDD3AC1883A8E500761532 /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -385,6 +387,7 @@
 		497E82A918AE334000393EA3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				49D4251219B9D3950043DD5C /* button_blue@2x.png */,
 				4918F2EA19B4AD9100A8C686 /* Icon.png */,
 				4918F2EB19B4AD9100A8C686 /* Icon@2x.png */,
 				4903F118188788FB00654C5C /* 08.png */,
@@ -511,6 +514,7 @@
 				4908DA4A18BAE23500A75F80 /* record_animate_07.png in Resources */,
 				4903F119188788FB00654C5C /* 08.png in Resources */,
 				4908DA4818BAE23500A75F80 /* record_animate_05.png in Resources */,
+				49D4251319B9D3950043DD5C /* button_blue@2x.png in Resources */,
 				490D039E18754B760094AD0F /* Images.xcassets in Resources */,
 				4908DA4918BAE23500A75F80 /* record_animate_06.png in Resources */,
 				4908DA4D18BAE23500A75F80 /* record_animate_10.png in Resources */,

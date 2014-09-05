@@ -7,7 +7,6 @@
 //
 
 #import "HomeViewController.h"
-#import "ContactCell.h"
 #import "Contact.h"
 #import "AddViewController.h"
 #import "ShowViewController.h"
@@ -53,6 +52,7 @@
     [self.contactTableView setDataSource:self];
     self.contactTableView.backgroundColor = [UIColor whiteColor];
     self.contactTableView.rowHeight = CELL_HEIGHT;
+    self.contactTableView.showsVerticalScrollIndicator = FALSE;
     [self.contactTableView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
     [self.view addSubview:self.contactTableView];
     
@@ -125,7 +125,7 @@
                                                 rightUtilityButtons:rightBtnarr];
 
     }
-;
+    
     Contact *contact = self.dataArray[indexPath.row];
     cell.contactName.text = contact.name;
     cell.contactTele.text = contact.telephoneNumber;
@@ -156,7 +156,7 @@
 - (NSArray *)rightButtons
 {
     NSMutableArray *rightUtilityButtons = [NSMutableArray array];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor yellowColor] title:@"编辑"];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor brownColor] title:@"编辑"];
     [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor redColor] title:@"删除"];
     return rightUtilityButtons;
 }
@@ -164,17 +164,27 @@
 - (NSArray *)leftButtons
 {
     NSMutableArray *rightUtilityButtons = [NSMutableArray array];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor brownColor] title:@"删除"];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor brownColor] title:@"分组"];
     return rightUtilityButtons;
 }
 
-#pragma mark - UIActionSheetDelegate
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        //可在此添加AlertView
-        [self deleteItemAtIndexPath:self.indexPath];
-    } else if (buttonIndex == 1) {
-        [self switchToEditController:self.indexPath];
+#pragma mark -SWTableViewCellDelegate
+- (void)swipeableTableViewCell:(ContactCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
+    switch (index) {
+        case 0:
+        {
+            //编辑房源
+            [self switchToEditController:self.indexPath];
+            break;
+        }
+        case 1:
+        {
+            //违规房源仅有删除房源操作
+            [self deleteItemAtIndexPath:self.indexPath];
+            break;
+        }
+        default:
+            break;
     }
 }
 
@@ -211,7 +221,7 @@
     [self.dataArray removeObjectAtIndex:indexPath.row];
 }
 
-- (IBAction)call:(id)sender {
+- (void)call:(id)sender {
     UIButton *button = (UIButton *)sender;
     int tagNumber = button.tag;
     self.indexPath = [NSIndexPath indexPathForRow:tagNumber inSection:0];

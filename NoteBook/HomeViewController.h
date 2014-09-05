@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "AddViewController.h"
+#import "ContactCell.h"
 
-@interface HomeViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,NSFetchedResultsControllerDelegate>
+@interface HomeViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,NSFetchedResultsControllerDelegate,SWTableViewCellDelegate>
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) AVAudioPlayer *avPlay;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
-- (IBAction)option:(id)sender;
-- (IBAction)call:(id)sender;
+- (void)call:(id)sender;
 
 @end

@@ -64,6 +64,13 @@
     lb.textAlignment = NSTextAlignmentCenter;
     lb.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = lb;
+    
+    UIBarButtonItem *storeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContactInfo)];
+    storeButton.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = storeButton;
+    self.navigationController.navigationBar.hidden = NO;
+    
+    [self.contactTableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -71,6 +78,12 @@
     [super viewWillAppear:animated];
     [self updateContactData];
     [self.contactTableView reloadData];
+}
+
+- (void)addContactInfo
+{
+    AddViewController *addContact = [[AddViewController alloc] init];
+    [self.navigationController pushViewController:addContact animated:YES];
 }
 
 - (void)updateContactData
@@ -116,9 +129,7 @@
     Contact *contact = self.dataArray[indexPath.row];
     cell.contactName.text = contact.name;
     cell.contactTele.text = contact.telephoneNumber;
-    cell.contactImage.layer.cornerRadius = 15.0;
-    cell.imageView.layer.masksToBounds = YES;
-    cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:contact.defaultImagePath]]];
+    cell.contactImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:contact.defaultImagePath]]];
     
     UITapGestureRecognizer *nameTapRecognizer = [[UITapGestureRecognizer alloc]
                                                  initWithTarget:self action:@selector(nameTapped:)];
@@ -201,7 +212,7 @@
 }
 
 - (IBAction)call:(id)sender {
-    UIButton *button = (UIButton*)sender;
+    UIButton *button = (UIButton *)sender;
     int tagNumber = button.tag;
     self.indexPath = [NSIndexPath indexPathForRow:tagNumber inSection:0];
     [self callNumber:self.indexPath];

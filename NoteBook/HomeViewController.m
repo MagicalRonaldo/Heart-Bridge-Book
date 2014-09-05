@@ -15,78 +15,78 @@
 #define ENTITY_NAME @"Contact"
 #define SORT_DESCRIPTION_CREATE_DATE @"createDate"
 
-@interface HomeViewController () {
-    NSInteger recordTag;
-}
+@interface HomeViewController ()
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSInteger recordTag;
+@property (nonatomic, strong) UITableView *contactTableView;
 
 @end
 
 @implementation HomeViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    [self updateCollectionViewData];
+    [self updateContactData];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     
     [super viewWillAppear:animated];
-    [self updateCollectionViewData];
-    [self.collectionView reloadData];
+    [self updateContactData];
+    [self.contactTableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)updateCollectionViewData {
+- (void)updateContactData
+{
     AppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
     self.dataArray = [[myDelegate fetchObjectsWithEntity:@"Contact" predicate:nil sort:@"creatDate" ascending:NO] mutableCopy];
     NSLog(@"=== number of items is %lu", (unsigned long)self.dataArray.count);
 }
 
-#pragma mark - UICollectionViewDataSource
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+#pragma mark - UITableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.dataArray.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *identifier = @"Cell";
-    ContactCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    ContactCell *cell = ;
     Contact *contact = self.dataArray[indexPath.row];
-    cell.name.text = contact.name;
-    cell.tele.text = contact.telephoneNumber;
-    cell.imageView.layer.cornerRadius = 15.0;
+    cell.contactName.text = contact.name;
+    cell.contactTele.text = contact.telephoneNumber;
+    cell.contactImage.layer.cornerRadius = 15.0;
     cell.imageView.layer.masksToBounds = YES;
     cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:contact.defaultImagePath]]];
     
     UITapGestureRecognizer *nameTapRecognizer = [[UITapGestureRecognizer alloc]
                                                  initWithTarget:self action:@selector(nameTapped:)];
     nameTapRecognizer.numberOfTapsRequired = 1;
-    [cell.name addGestureRecognizer:nameTapRecognizer];
+    [cell.contactName addGestureRecognizer:nameTapRecognizer];
     
     UITapGestureRecognizer *telephoneTapRecognizer = [[UITapGestureRecognizer alloc]
                                                       initWithTarget:self action:@selector(telephoneTapped:)];
     telephoneTapRecognizer.numberOfTapsRequired = 1;
-    [cell.tele addGestureRecognizer:telephoneTapRecognizer];
+    [cell.contactTele addGestureRecognizer:telephoneTapRecognizer];
     
     UITapGestureRecognizer *imageTapRecognizer = [[UITapGestureRecognizer alloc]
                                                   initWithTarget:self action:@selector(contactTapped:)];
     imageTapRecognizer.numberOfTapsRequired = 1;
     [cell.imageView addGestureRecognizer:imageTapRecognizer];
     
-    cell.btnOption.tag = indexPath.row;
-    cell.btnPhone.tag = indexPath.row;
+    cell.call.tag = indexPath.row;
     cell.imageView.tag = indexPath.row;
-    cell.name.tag = indexPath.row;
-    cell.tele.tag = indexPath.row;
+    cell.contactName.tag = indexPath.row;
+    cell.contactTele.tag = indexPath.row;
     return cell;
 }
 
@@ -115,11 +115,11 @@
 }
 
 - (void)deleteItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.collectionView performBatchUpdates:^{
+    [self.contactTableView performBatchUpdates:^{
         [self deleteItemsFromDataSourceAtIndexPath:indexPath];
-        [self.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+        [self.contactTableView deleteItemsAtIndexPaths:@[indexPath]];
     } completion:nil];
-    [self.collectionView reloadData];
+    [self.contactTableView reloadData];
 }
 
 - (void)deleteItemsFromDataSourceAtIndexPath:(NSIndexPath *)indexPath {
@@ -235,6 +235,12 @@
     //将contact对象传递给ShowViewController
     showDetailController.contact = contact;
     [self.navigationController pushViewController:showDetailController animated:YES];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 @end

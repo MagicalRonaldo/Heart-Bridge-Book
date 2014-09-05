@@ -11,4 +11,9 @@
 
 @interface ContactCell:SWTableViewCell
 
+@property (nonatomic, strong) UIImageView *contactImage;//图像
+@property (nonatomic, strong) UILabel *contactName; //名字
+@property (nonatomic, strong) UILabel *contactTele; //电话号码
+@property (nonatomic, strong) UIButton *call; //拨打电话
+
 @end

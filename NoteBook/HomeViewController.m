@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 xubing. All rights reserved.
 //
 
-#import "FirstViewController.h"
+#import "HomeViewController.h"
 #import "ContactCell.h"
 #import "Contact.h"
 #import "AddViewController.h"
@@ -15,7 +15,7 @@
 #define ENTITY_NAME @"Contact"
 #define SORT_DESCRIPTION_CREATE_DATE @"createDate"
 
-@interface FirstViewController () {
+@interface HomeViewController () {
     NSInteger recordTag;
 }
 
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation FirstViewController
+@implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

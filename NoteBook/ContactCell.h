@@ -7,13 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWTableViewCell.h"
 
-@interface ContactCell :UICollectionViewCell
-
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic) IBOutlet UILabel *name;
-@property (strong, nonatomic) IBOutlet UILabel *tele;
-@property (strong, nonatomic) IBOutlet UIButton *btnOption;
-@property (strong, nonatomic) IBOutlet UIButton *btnPhone;
+@interface ContactCell:SWTableViewCell
 
 @end

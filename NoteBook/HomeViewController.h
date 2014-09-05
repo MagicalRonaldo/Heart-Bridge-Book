@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "AddViewController.h"
 
-@interface FirstViewController : UICollectionViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,NSFetchedResultsControllerDelegate>
+@interface HomeViewController : UICollectionViewController<UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) AVAudioPlayer *avPlay;

@@ -81,4 +81,6 @@
 
 + (UIColor *)FilterCellSeparatorLineColor;
 
++ (UIColor *)colorWithHexString: (NSString *)stringToConvert;
+
 @end

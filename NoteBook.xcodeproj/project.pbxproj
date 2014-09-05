@@ -63,6 +63,9 @@
 		4928635A18B4A11C000C11F2 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4928635918B4A11C000C11F2 /* ShowViewController.m */; };
 		497E82A518AE320200393EA3 /* ImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497E82A418AE320200393EA3 /* ImageCropperViewController.m */; };
 		499FAD55188EA63B009D2359 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499FAD54188EA63B009D2359 /* AVFoundation.framework */; };
+		49D4250719B99A3D0043DD5C /* APPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4250619B99A3D0043DD5C /* APPManager.m */; };
+		49D4250A19B99BDA0043DD5C /* HBNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4250919B99BDA0043DD5C /* HBNavigationControllerViewController.m */; };
+		49D4250D19B9A2700043DD5C /* UIImage+HB.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4250C19B9A2700043DD5C /* UIImage+HB.m */; };
 		49DDD3AD1883A8E500761532 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DDD3AC1883A8E500761532 /* AddViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -161,6 +164,12 @@
 		497E82A418AE320200393EA3 /* ImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCropperViewController.m; sourceTree = "<group>"; };
 		497E82A618AE326C00393EA3 /* ImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCropperViewController.h; sourceTree = "<group>"; };
 		499FAD54188EA63B009D2359 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		49D4250519B99A3D0043DD5C /* APPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPManager.h; sourceTree = "<group>"; };
+		49D4250619B99A3D0043DD5C /* APPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPManager.m; sourceTree = "<group>"; };
+		49D4250819B99BDA0043DD5C /* HBNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBNavigationControllerViewController.h; sourceTree = "<group>"; };
+		49D4250919B99BDA0043DD5C /* HBNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBNavigationControllerViewController.m; sourceTree = "<group>"; };
+		49D4250B19B9A2700043DD5C /* UIImage+HB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+HB.h"; sourceTree = "<group>"; };
+		49D4250C19B9A2700043DD5C /* UIImage+HB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+HB.m"; sourceTree = "<group>"; };
 		49DDD3AB1883A8E500761532 /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		49DDD3AC1883A8E500761532 /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -323,6 +332,12 @@
 				491215B619B89F2C00E576BA /* BaseModel.m */,
 				491215C419B8A45800E576BA /* HBTableViewCell.h */,
 				491215C519B8A45800E576BA /* HBTableViewCell.m */,
+				49D4250519B99A3D0043DD5C /* APPManager.h */,
+				49D4250619B99A3D0043DD5C /* APPManager.m */,
+				49D4250819B99BDA0043DD5C /* HBNavigationControllerViewController.h */,
+				49D4250919B99BDA0043DD5C /* HBNavigationControllerViewController.m */,
+				49D4250B19B9A2700043DD5C /* UIImage+HB.h */,
+				49D4250C19B9A2700043DD5C /* UIImage+HB.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -522,6 +537,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4928635A18B4A11C000C11F2 /* ShowViewController.m in Sources */,
+				49D4250D19B9A2700043DD5C /* UIImage+HB.m in Sources */,
 				491215AB19B89AB600E576BA /* SWCellScrollView.m in Sources */,
 				49038BAC18B1E9280032E84D /* Contact.m in Sources */,
 				491215AC19B89AB600E576BA /* SWLongPressGestureRecognizer.m in Sources */,
@@ -543,7 +559,9 @@
 				490D039318754B760094AD0F /* AppDelegate.m in Sources */,
 				491215AF19B89AB600E576BA /* SWUtilityButtonView.m in Sources */,
 				4905E942188E1AC400DFC415 /* Model.xcdatamodeld in Sources */,
+				49D4250A19B99BDA0043DD5C /* HBNavigationControllerViewController.m in Sources */,
 				490A49021891078F001AC8B2 /* AGIPCAssetsController.m in Sources */,
+				49D4250719B99A3D0043DD5C /* APPManager.m in Sources */,
 				490D039918754B760094AD0F /* HomeViewController.m in Sources */,
 				490D038F18754B760094AD0F /* main.m in Sources */,
 				491215B719B89F2C00E576BA /* BaseModel.m in Sources */,

@@ -11,10 +11,27 @@
 #import "Contact.h"
 #import "AddViewController.h"
 #import "ShowViewController.h"
+#import "UIColor+HB.h"
 
 #define ENTITY_NAME @"Contact"
 #define SORT_DESCRIPTION_CREATE_DATE @"createDate"
 #define CELL_HEIGHT 150.0
+
+#define SYSTEM_BLUE [UIColor colorWithHexString:@"2087fc"]
+#define SYSTEM_LIGHT_GRAY [UIColor colorWithHexString:@"999999"]
+#define SYSTEM_LIGHT_GRAY_BG [UIColor colorWithHexString:@"EFEFF4"]
+#define SYSTEM_LIGHT_GRAY_BG2 [UIColor colorWithHexString:@"eeeeee"]
+
+#define SYSTEM_DARK_GRAY [UIColor colorWithHexString:@"666666"]
+#define SYSTEM_GREEN [UIColor colorWithHexString:@"66cc00"]
+#define SYSTEM_ORANGE [UIColor colorWithHexString:@"FF6600"]
+#define SYSTEM_RED [UIColor colorWithRed:0.99 green:0.24 blue:0.22 alpha:1]
+
+#define SYSTEM_ZZ_RED [UIColor colorWithRed:0.93 green:0.24 blue:0.25 alpha:1]
+#define SYSTEM_NAVBAR_DARK_BG [UIColor colorWithHexString:@"252D3B"]
+#define SYSTEM_NAVIBAR_COLOR [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
+#define SYSTEM_TABBAR_SELECTCOLOR_DARK [UIColor colorWithHexString:@"1a8ff2"]
+
 
 @interface HomeViewController ()
 
@@ -29,16 +46,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.contactTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 20 - 50) style:UITableViewStylePlain];
+    self.contactTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
     
     self.contactTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.contactTableView setDelegate:self];
     [self.contactTableView setDataSource:self];
-    self.contactTableView.backgroundColor = [UIColor clearColor];
+    self.contactTableView.backgroundColor = [UIColor whiteColor];
     self.contactTableView.rowHeight = CELL_HEIGHT;
     [self.contactTableView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
-    
     [self.view addSubview:self.contactTableView];
+    
+    //设置标题栏
+    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 180, 44)];
+    lb.backgroundColor = [UIColor clearColor];
+    lb.font = [UIFont systemFontOfSize:20];
+    lb.text = @"电话本";
+    lb.textAlignment = NSTextAlignmentCenter;
+    lb.textColor = [UIColor whiteColor];
+    self.navigationItem.titleView = lb;
 }
 
 - (void)viewWillAppear:(BOOL)animated

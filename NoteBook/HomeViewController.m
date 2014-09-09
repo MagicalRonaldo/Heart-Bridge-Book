@@ -129,6 +129,7 @@
     Contact *contact = self.dataArray[indexPath.row];
     cell.contactName.text = contact.name;
     cell.contactTele.text = contact.telephoneNumber;
+    cell.delegate = self;
     cell.contactImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:contact.defaultImagePath]]];
     
     UITapGestureRecognizer *nameTapRecognizer = [[UITapGestureRecognizer alloc]
@@ -169,7 +170,9 @@
 }
 
 #pragma mark -SWTableViewCellDelegate
-- (void)swipeableTableViewCell:(ContactCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index {
+- (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
+{
+    self.indexPath = [self.contactTableView indexPathForCell:cell];
     switch (index) {
         case 0:
         {

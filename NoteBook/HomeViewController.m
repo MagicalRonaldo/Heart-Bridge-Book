@@ -16,25 +16,12 @@
 #define SORT_DESCRIPTION_CREATE_DATE @"createDate"
 #define CELL_HEIGHT 150.0
 
-#define SYSTEM_BLUE [UIColor colorWithHexString:@"2087fc"]
-#define SYSTEM_LIGHT_GRAY [UIColor colorWithHexString:@"999999"]
-#define SYSTEM_LIGHT_GRAY_BG [UIColor colorWithHexString:@"EFEFF4"]
-#define SYSTEM_LIGHT_GRAY_BG2 [UIColor colorWithHexString:@"eeeeee"]
-
-#define SYSTEM_DARK_GRAY [UIColor colorWithHexString:@"666666"]
-#define SYSTEM_GREEN [UIColor colorWithHexString:@"66cc00"]
-#define SYSTEM_ORANGE [UIColor colorWithHexString:@"FF6600"]
-#define SYSTEM_RED [UIColor colorWithRed:0.99 green:0.24 blue:0.22 alpha:1]
-
-#define SYSTEM_ZZ_RED [UIColor colorWithRed:0.93 green:0.24 blue:0.25 alpha:1]
-#define SYSTEM_NAVBAR_DARK_BG [UIColor colorWithHexString:@"252D3B"]
-#define SYSTEM_NAVIBAR_COLOR [UIColor colorWithRed:1 green:1 blue:1 alpha:1]
-#define SYSTEM_TABBAR_SELECTCOLOR_DARK [UIColor colorWithHexString:@"1a8ff2"]
-
-
 @interface HomeViewController ()
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *rightBtnarr;
+@property (nonatomic, strong) NSMutableArray *leftBtnarr;
+
 @property (nonatomic) NSInteger recordTag;
 @property (nonatomic, strong) UITableView *contactTableView;
 
@@ -69,21 +56,8 @@
     storeButton.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = storeButton;
     self.navigationController.navigationBar.hidden = NO;
-    
-    [self.contactTableView reloadData];
-}
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self updateContactData];
     [self.contactTableView reloadData];
-}
-
-- (void)addContactInfo
-{
-    AddViewController *addContact = [[AddViewController alloc] init];
-    [self.navigationController pushViewController:addContact animated:YES];
 }
 
 - (void)updateContactData
@@ -91,6 +65,13 @@
     AppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
     self.dataArray = [[myDelegate fetchObjectsWithEntity:@"Contact" predicate:nil sort:@"creatDate" ascending:NO] mutableCopy];
     NSLog(@"=== number of items is %lu", (unsigned long)self.dataArray.count);
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self updateContactData];
+    [self.contactTableView reloadData];
 }
 
 #pragma mark - UITableView
@@ -112,24 +93,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"identifierCell";
-    ContactCell *cell;
     
-    NSArray *rightBtnarr = [self rightButtons];
-    NSArray *leftBtnarr = [self leftButtons];
+    ContactCell *cell;
+    self.rightBtnarr = [self rightButtons];
+    self.leftBtnarr = [self leftButtons];
     
     if (cell == nil) {
         cell = [[ContactCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                     reuseIdentifier:identifier
                                                 containingTableView:tableView
-                                                 leftUtilityButtons:leftBtnarr
-                                                rightUtilityButtons:rightBtnarr];
-
+                                                 leftUtilityButtons:self.leftBtnarr
+                                                rightUtilityButtons:self.rightBtnarr];
     }
-    
+    cell.delegate = self;
     Contact *contact = self.dataArray[indexPath.row];
     cell.contactName.text = contact.name;
     cell.contactTele.text = contact.telephoneNumber;
-    cell.delegate = self;
     cell.contactImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:contact.defaultImagePath]]];
     
     UITapGestureRecognizer *nameTapRecognizer = [[UITapGestureRecognizer alloc]
@@ -145,16 +124,16 @@
     UITapGestureRecognizer *imageTapRecognizer = [[UITapGestureRecognizer alloc]
                                                   initWithTarget:self action:@selector(contactTapped:)];
     imageTapRecognizer.numberOfTapsRequired = 1;
-    [cell.imageView addGestureRecognizer:imageTapRecognizer];
+    [cell.contactImage addGestureRecognizer:imageTapRecognizer];
     
     cell.call.tag = indexPath.row;
-    cell.imageView.tag = indexPath.row;
+    cell.contactImage.tag = indexPath.row;
     cell.contactName.tag = indexPath.row;
     cell.contactTele.tag = indexPath.row;
     return cell;
 }
 
-- (NSArray *)rightButtons
+- (NSMutableArray *)rightButtons
 {
     NSMutableArray *rightUtilityButtons = [NSMutableArray array];
     [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor brownColor] title:@"编辑"];
@@ -162,11 +141,18 @@
     return rightUtilityButtons;
 }
 
-- (NSArray *)leftButtons
+- (NSMutableArray *)leftButtons
 {
-    NSMutableArray *rightUtilityButtons = [NSMutableArray array];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor brownColor] title:@"分组"];
-    return rightUtilityButtons;
+    NSMutableArray *leftUtilityButtons = [NSMutableArray array];
+    [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor brownColor] title:@"分组"];
+    return leftUtilityButtons;
+}
+
+#pragma mark - delete,edit,add,update
+- (void)addContactInfo
+{
+    AddViewController *addContact = [[AddViewController alloc] init];
+    [self.navigationController pushViewController:addContact animated:YES];
 }
 
 #pragma mark -SWTableViewCellDelegate
@@ -182,7 +168,7 @@
         }
         case 1:
         {
-            //违规房源仅有删除房源操作
+            //删除房源操作
             [self deleteItemAtIndexPath:self.indexPath];
             break;
         }
@@ -191,14 +177,15 @@
     }
 }
 
-- (void)deleteItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)deleteItemAtIndexPath:(NSIndexPath *)indexPath
+{
     [self deleteItemsFromDataSourceAtIndexPath:indexPath];
     [self.contactTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
     [self.contactTableView reloadData];
 }
 
-- (void)deleteItemsFromDataSourceAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (void)deleteItemsFromDataSourceAtIndexPath:(NSIndexPath *)indexPath
+{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     Contact *contact = self.dataArray[indexPath.row];
     NSError *error;
@@ -224,14 +211,18 @@
     [self.dataArray removeObjectAtIndex:indexPath.row];
 }
 
-- (void)call:(id)sender {
+
+
+- (void)call:(id)sender
+{
     UIButton *button = (UIButton *)sender;
     int tagNumber = button.tag;
     self.indexPath = [NSIndexPath indexPathForRow:tagNumber inSection:0];
     [self callNumber:self.indexPath];
 }
 
-- (void)callNumber:(NSIndexPath *)indexPath {
+- (void)callNumber:(NSIndexPath *)indexPath
+{
     Contact *contact = self.dataArray[indexPath.row];
     UIWebView*callWebview =[[UIWebView alloc] init];
     NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", contact.telephoneNumber]];
@@ -240,7 +231,8 @@
     [self.view addSubview:callWebview];
 }
 
-- (void)switchToEditController:(NSIndexPath *)index {
+- (void)switchToEditController:(NSIndexPath *)index
+{
     BOOL edit = YES;
     Contact *contact = self.dataArray[index.row];
     
@@ -252,7 +244,8 @@
 }
 
 #pragma  mark - playAudio
-- (NSURL *)chooseUrl:(int)tag {
+- (NSURL *)chooseUrl:(int)tag
+{
     NSURL *url;
     Contact *contact = self.dataArray[tag];
     switch (self.recordTag) {
@@ -273,25 +266,29 @@
 }
 
 #pragma mark - tapGesture
-- (void)nameTapped:(UITapGestureRecognizer *)sender {
+- (void)nameTapped:(UITapGestureRecognizer *)sender
+{
     int tag = [sender view].tag;
     self.recordTag = 1;
     [self playAudio:tag];
 }
 
-- (void)telephoneTapped:(UITapGestureRecognizer *)sender {
+- (void)telephoneTapped:(UITapGestureRecognizer *)sender
+{
     int tag = [sender view].tag;
     self.recordTag = 2;
     [self playAudio:tag];
 }
 
-- (void)addressTapped:(UITapGestureRecognizer *)sender {
+- (void)addressTapped:(UITapGestureRecognizer *)sender
+{
     int tag = [sender view].tag;
     self.recordTag = 3;
     [self playAudio:tag];
 }
 
-- (void)playAudio:(int)tag {
+- (void)playAudio:(int)tag
+{
     if (self.avPlay.playing) {
         [self.avPlay stop];
         return;
@@ -301,7 +298,8 @@
     [self.avPlay play];
 }
 
-- (void)contactTapped:(UITapGestureRecognizer *)sender {
+- (void)contactTapped:(UITapGestureRecognizer *)sender
+{
     //获取tag
     int tag = [sender view].tag;
     //获取对应的contact对象

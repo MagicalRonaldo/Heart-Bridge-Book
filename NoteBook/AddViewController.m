@@ -60,7 +60,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
     
-    
     UIView *viewImageScope = [[UIView alloc] initWithFrame:CGRectMake(0, 10, ScreenWidth, 170)];
     [self.scrollViewMain addSubview:viewImageScope];
     
@@ -75,7 +74,6 @@
     };
     [viewImageScope addSubview:self.imageViewPhoto];
 
-    
     
     UIButton *buttonSetPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     buttonSetPhoto.frame = CGRectMake(190, 20, ScreenWidth - 210, 50);
@@ -93,7 +91,6 @@
     viewImageLine.backgroundColor = [UIColor grayColor];
     [viewImageScope addSubview:viewImageLine];
 
-    
 
     UIView *viewNameScope = [[UIView alloc] initWithFrame:CGRectMake(0, 180, ScreenWidth, 128)];
     [self.scrollViewMain addSubview:viewNameScope];
@@ -184,7 +181,6 @@
     [self.scrollViewMain addSubview:viewAddressScope];
     
     
-    
     UILabel *labelAddress = [[UILabel alloc] initWithFrame:CGRectMake(30, 20, 0, 0)];
     labelAddress.text = @"地       址:";
     [labelAddress sizeToFit];
@@ -218,7 +214,6 @@
     UIView *viewAddressLine = [[UIView alloc] initWithFrame:CGRectMake(10, 125, ScreenWidth-20, 1)];
     viewAddressLine.backgroundColor = [UIColor grayColor];
     [viewAddressScope addSubview:viewAddressLine];
-    
     
     
     UIButton *buttonSave = [UIButton buttonWithType:UIButtonTypeInfoLight];
@@ -266,7 +261,6 @@
     [self.viewRecord addSubview:self.confirm];
 
     
-    
     self.defaultImageDisplay = [[UIView alloc] initWithFrame:CGRectMake(0, -640, ScreenWidth, ScreenHeight)];
     self.defaultImageDisplay.backgroundColor = [UIColor grayColor];
     [self.scrollViewMain addSubview:self.defaultImageDisplay];
@@ -282,7 +276,7 @@
     self.imageViewPhoto.userInteractionEnabled = YES;
 
     
-    self.scrollViewMain.contentSize=CGSizeMake(ScreenWidth,750);
+    self.scrollViewMain.contentSize = CGSizeMake(ScreenWidth,750);
 }
 
 - (void)didReceiveMemoryWarning {

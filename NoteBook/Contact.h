@@ -12,14 +12,14 @@
 
 @interface Contact : NSManagedObject
 
-@property (nonatomic, retain) NSString * address;
-@property (nonatomic, retain) NSString * addressAudioPath;
+@property (nonatomic, retain) NSString *address;
+@property (nonatomic, retain) NSString *addressAudioPath;
 @property (nonatomic, retain) id album;
-@property (nonatomic, retain) NSDate * creatDate;
-@property (nonatomic, retain) NSString * defaultImagePath;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * nameAudioPath;
-@property (nonatomic, retain) NSString * telephoneNumber;
-@property (nonatomic, retain) NSString * telephoneNumberAudioPath;
+@property (nonatomic, retain) NSDate *creatDate;
+@property (nonatomic, retain) NSString *defaultImagePath;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *nameAudioPath;
+@property (nonatomic, retain) NSString *telephoneNumber;
+@property (nonatomic, retain) NSString *telephoneNumberAudioPath;
 
 @end

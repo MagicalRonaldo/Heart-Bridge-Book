@@ -14,7 +14,7 @@
 #import "AGImagePickerController.h"
 #import "Contact.h"
 
-@interface AddViewController : UIViewController <UITextFieldDelegate,AVAudioRecorderDelegate,UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, AGImagePickerControllerDelegate> {
+@interface AddViewController : UIViewController <UITextFieldDelegate, AVAudioRecorderDelegate, UIActionSheetDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, AGImagePickerControllerDelegate> {
     AVAudioRecorder *recorder;
     NSTimer *timer;
     NSURL *urlPlay;
@@ -31,10 +31,10 @@
 @property (nonatomic, strong) UITextField *textFieldTelephone;
 @property (nonatomic, strong) UITextField *textFieldAddress;
 @property (nonatomic, strong) UIScrollView *scrollViewMain;
-@property (nonatomic, strong) UIView * currentView;
-@property (nonatomic ,strong) UILabel *recordNotes;
+@property (nonatomic, strong) UIView *currentView;
 @property (nonatomic, strong) UIView *viewRecord;
 @property (nonatomic, strong) UIView *defaultImageDisplay;
+@property (nonatomic ,strong) UILabel *recordNotes;
 @property (nonatomic, strong) UIButton *doRecord;
 @property (nonatomic, strong) UIButton *doTry;
 @property (nonatomic, strong) UIButton *confirm;

@@ -35,7 +35,8 @@
 
 @synthesize selectedPhotos;
 
-- (id)initWithCoder:(NSCoder *)decoder {
+- (id)initWithCoder:(NSCoder *)decoder
+{
     self = [super initWithCoder:decoder];
     if (self) {
         [self editAlbumInitial];
@@ -43,13 +44,14 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     //获取当前应用程序的委托（UIApplication sharedApplication为整个应用程序上下文）
     self.myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     self.scrollViewMain = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    self.scrollViewMain.backgroundColor=[UIColor whiteColor];
+    self.scrollViewMain.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.scrollViewMain];
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
     //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
@@ -59,7 +61,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
-    
     UIView *viewImageScope = [[UIView alloc] initWithFrame:CGRectMake(0, 10, ScreenWidth, 170)];
     [self.scrollViewMain addSubview:viewImageScope];
     
@@ -68,8 +69,7 @@
     self.imageViewPhoto.layer.masksToBounds = YES;
     if (self.editContact) {
         self.imageViewPhoto.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.contact.defaultImagePath]]];
-    }
-    else{
+    } else {
         self.imageViewPhoto.image = [UIImage imageNamed:@"08.png"];
     };
     [viewImageScope addSubview:self.imageViewPhoto];
@@ -90,7 +90,7 @@
     UIView *viewImageLine = [[UIView alloc] initWithFrame:CGRectMake(10, 165, ScreenWidth-20, 1)];
     viewImageLine.backgroundColor = [UIColor grayColor];
     [viewImageScope addSubview:viewImageLine];
-
+    
 
     UIView *viewNameScope = [[UIView alloc] initWithFrame:CGRectMake(0, 180, ScreenWidth, 128)];
     [self.scrollViewMain addSubview:viewNameScope];
@@ -106,7 +106,7 @@
     fieldHeight = labelName.frame.size.height + 20;
     
     self.textFieldName = [[UITextField alloc] initWithFrame:(CGRectMake(30 + labelWidth + 20, 10, fieldWidth, fieldHeight))];
-    self.textFieldName.borderStyle=UITextBorderStyleRoundedRect;
+    self.textFieldName.borderStyle = UITextBorderStyleRoundedRect;
     self.textFieldName.delegate = self;
     if (self.editContact) {
         self.textFieldName.text = self.contact.name;
@@ -802,7 +802,7 @@
     [self presentViewController:ipc animated:YES completion:NULL];
 }
 
--(void)editAlbumInitial {
+- (void)editAlbumInitial {
     self.selectedPhotos = [NSMutableArray array];
     __block AddViewController *blockSelf = self;
     ipc = [[AGImagePickerController alloc] initWithDelegate:self];
@@ -813,7 +813,6 @@
             NSLog(@"User has cancelled.");
             [blockSelf dismissViewControllerAnimated:YES completion:NULL];
         } else {
-            // We need to wait for the view controller to appear first.
             double delayInSeconds = 0.5;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){

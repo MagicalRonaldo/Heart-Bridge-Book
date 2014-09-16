@@ -56,7 +56,7 @@
     storeButton.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = storeButton;
     self.navigationController.navigationBar.hidden = NO;
-
+    
     [self.contactTableView reloadData];
 }
 
@@ -216,7 +216,7 @@
 - (void)call:(id)sender
 {
     UIButton *button = (UIButton *)sender;
-    int tagNumber = button.tag;
+    NSInteger tagNumber = button.tag;
     self.indexPath = [NSIndexPath indexPathForRow:tagNumber inSection:0];
     [self callNumber:self.indexPath];
 }
@@ -244,7 +244,7 @@
 }
 
 #pragma  mark - playAudio
-- (NSURL *)chooseUrl:(int)tag
+- (NSURL *)chooseUrl:(NSInteger)tag
 {
     NSURL *url;
     Contact *contact = self.dataArray[tag];
@@ -268,26 +268,26 @@
 #pragma mark - tapGesture
 - (void)nameTapped:(UITapGestureRecognizer *)sender
 {
-    int tag = [sender view].tag;
+    NSInteger tag = [sender view].tag;
     self.recordTag = 1;
     [self playAudio:tag];
 }
 
 - (void)telephoneTapped:(UITapGestureRecognizer *)sender
 {
-    int tag = [sender view].tag;
+    NSInteger tag = [sender view].tag;
     self.recordTag = 2;
     [self playAudio:tag];
 }
 
 - (void)addressTapped:(UITapGestureRecognizer *)sender
 {
-    int tag = [sender view].tag;
+    NSInteger tag = [sender view].tag;
     self.recordTag = 3;
     [self playAudio:tag];
 }
 
-- (void)playAudio:(int)tag
+- (void)playAudio:(NSInteger)tag
 {
     if (self.avPlay.playing) {
         [self.avPlay stop];
@@ -301,7 +301,7 @@
 - (void)contactTapped:(UITapGestureRecognizer *)sender
 {
     //获取tag
-    int tag = [sender view].tag;
+    NSInteger tag = [sender view].tag;
     //获取对应的contact对象
     Contact *contact = self.dataArray[tag];
     ShowViewController *showDetailController = [[ShowViewController alloc] init];

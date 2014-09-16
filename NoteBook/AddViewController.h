@@ -34,7 +34,7 @@
 @property (nonatomic, strong) UIView *currentView;
 @property (nonatomic, strong) UIView *viewRecord;
 @property (nonatomic, strong) UIView *defaultImageDisplay;
-@property (nonatomic ,strong) UILabel *recordNotes;
+@property (nonatomic, strong) UILabel *recordNotes;
 @property (nonatomic, strong) UIButton *doRecord;
 @property (nonatomic, strong) UIButton *doTry;
 @property (nonatomic, strong) UIButton *confirm;

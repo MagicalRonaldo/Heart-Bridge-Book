@@ -35,20 +35,12 @@
 
 @synthesize selectedPhotos;
 
-- (id)initWithCoder:(NSCoder *)decoder
-{
-    self = [super initWithCoder:decoder];
-    if (self) {
-        [self editAlbumInitial];
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     //获取当前应用程序的委托（UIApplication sharedApplication为整个应用程序上下文）
     self.myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [self editAlbumInitial];
     
     self.scrollViewMain = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     self.scrollViewMain.backgroundColor = [UIColor whiteColor];

@@ -69,6 +69,11 @@
 		49D4251119B9C9CF0043DD5C /* UIView+HB.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4251019B9C9CF0043DD5C /* UIView+HB.m */; };
 		49D4251319B9D3950043DD5C /* button_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D4251219B9D3950043DD5C /* button_blue@2x.png */; };
 		49DDD3AD1883A8E500761532 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DDD3AC1883A8E500761532 /* AddViewController.m */; };
+		49F5D34A19C918E800CA35CD /* BaseLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D34919C918E800CA35CD /* BaseLineView.m */; };
+		49F5D34E19C91B9B00CA35CD /* ContactImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D34D19C91B9B00CA35CD /* ContactImageCell.m */; };
+		49F5D35119C9227E00CA35CD /* TextAndRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D35019C9227E00CA35CD /* TextAndRecordCell.m */; };
+		49F5D35419C9254600CA35CD /* UILabel+HB.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D35319C9254600CA35CD /* UILabel+HB.m */; };
+		49F5D35719C92F6200CA35CD /* UITextField+HB.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D35619C92F6200CA35CD /* UITextField+HB.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +182,16 @@
 		49D4251219B9D3950043DD5C /* button_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_blue@2x.png"; sourceTree = "<group>"; };
 		49DDD3AB1883A8E500761532 /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		49DDD3AC1883A8E500761532 /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
+		49F5D34819C918E800CA35CD /* BaseLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLineView.h; sourceTree = "<group>"; };
+		49F5D34919C918E800CA35CD /* BaseLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLineView.m; sourceTree = "<group>"; };
+		49F5D34C19C91B9B00CA35CD /* ContactImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactImageCell.h; sourceTree = "<group>"; };
+		49F5D34D19C91B9B00CA35CD /* ContactImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactImageCell.m; sourceTree = "<group>"; };
+		49F5D34F19C9227E00CA35CD /* TextAndRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextAndRecordCell.h; sourceTree = "<group>"; };
+		49F5D35019C9227E00CA35CD /* TextAndRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextAndRecordCell.m; sourceTree = "<group>"; };
+		49F5D35219C9254600CA35CD /* UILabel+HB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+HB.h"; sourceTree = "<group>"; };
+		49F5D35319C9254600CA35CD /* UILabel+HB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+HB.m"; sourceTree = "<group>"; };
+		49F5D35519C92F6200CA35CD /* UITextField+HB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+HB.h"; sourceTree = "<group>"; };
+		49F5D35619C92F6200CA35CD /* UITextField+HB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+HB.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,11 +280,12 @@
 		490D038818754B760094AD0F /* NoteBook */ = {
 			isa = PBXGroup;
 			children = (
+				49F5D34B19C91B2F00CA35CD /* view */,
 				490D039118754B760094AD0F /* AppDelegate.h */,
 				490D039218754B760094AD0F /* AppDelegate.m */,
 				491215B019B89DD800E576BA /* Base */,
 				4912159D19B89A8A00E576BA /* SWTableViewCell */,
-				497E82AB18AE337500393EA3 /* Views */,
+				497E82AB18AE337500393EA3 /* cell */,
 				497E82AA18AE335D00393EA3 /* Controllers */,
 				497E82A718AE32F300393EA3 /* Resources */,
 				497E82AC18AE339600393EA3 /* Components */,
@@ -345,6 +361,12 @@
 				49D4250C19B9A2700043DD5C /* UIImage+HB.m */,
 				49D4250F19B9C9CF0043DD5C /* UIView+HB.h */,
 				49D4251019B9C9CF0043DD5C /* UIView+HB.m */,
+				49F5D34819C918E800CA35CD /* BaseLineView.h */,
+				49F5D34919C918E800CA35CD /* BaseLineView.m */,
+				49F5D35219C9254600CA35CD /* UILabel+HB.h */,
+				49F5D35319C9254600CA35CD /* UILabel+HB.m */,
+				49F5D35519C92F6200CA35CD /* UITextField+HB.h */,
+				49F5D35619C92F6200CA35CD /* UITextField+HB.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -410,13 +432,17 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		497E82AB18AE337500393EA3 /* Views */ = {
+		497E82AB18AE337500393EA3 /* cell */ = {
 			isa = PBXGroup;
 			children = (
 				490D03CA187550C00094AD0F /* ContactCell.h */,
 				490D03C9187550C00094AD0F /* ContactCell.m */,
+				49F5D34C19C91B9B00CA35CD /* ContactImageCell.h */,
+				49F5D34D19C91B9B00CA35CD /* ContactImageCell.m */,
+				49F5D34F19C9227E00CA35CD /* TextAndRecordCell.h */,
+				49F5D35019C9227E00CA35CD /* TextAndRecordCell.m */,
 			);
-			name = Views;
+			name = cell;
 			sourceTree = "<group>";
 		};
 		497E82AC18AE339600393EA3 /* Components */ = {
@@ -425,6 +451,13 @@
 				490A48EB1891078F001AC8B2 /* AGImagePickerController */,
 			);
 			name = Components;
+			sourceTree = "<group>";
+		};
+		49F5D34B19C91B2F00CA35CD /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -551,7 +584,11 @@
 				49038BAC18B1E9280032E84D /* Contact.m in Sources */,
 				491215AC19B89AB600E576BA /* SWLongPressGestureRecognizer.m in Sources */,
 				490A49041891078F001AC8B2 /* AGIPCGridItem.m in Sources */,
+				49F5D34E19C91B9B00CA35CD /* ContactImageCell.m in Sources */,
+				49F5D35119C9227E00CA35CD /* TextAndRecordCell.m in Sources */,
+				49F5D35419C9254600CA35CD /* UILabel+HB.m in Sources */,
 				49DDD3AD1883A8E500761532 /* AddViewController.m in Sources */,
+				49F5D34A19C918E800CA35CD /* BaseLineView.m in Sources */,
 				491215C319B8A25100E576BA /* UIColor+HB.m in Sources */,
 				490A48FE1891078F001AC8B2 /* AGImagePickerController+Helper.m in Sources */,
 				497E82A518AE320200393EA3 /* ImageCropperViewController.m in Sources */,
@@ -564,6 +601,7 @@
 				490A49061891078F001AC8B2 /* ALAsset+AGIPC.m in Sources */,
 				490A49051891078F001AC8B2 /* AGIPCToolbarItem.m in Sources */,
 				491215C619B8A45800E576BA /* HBTableViewCell.m in Sources */,
+				49F5D35719C92F6200CA35CD /* UITextField+HB.m in Sources */,
 				490D03CB187550C00094AD0F /* ContactCell.m in Sources */,
 				490D039318754B760094AD0F /* AppDelegate.m in Sources */,
 				491215AF19B89AB600E576BA /* SWUtilityButtonView.m in Sources */,

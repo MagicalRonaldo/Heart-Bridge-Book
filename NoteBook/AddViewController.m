@@ -277,7 +277,7 @@
 }
 
 #pragma mark - editDefaultImage
--(void)editDefaultImage:(UIButton *)btn {
+- (void)editDefaultImage:(UIButton *)btn {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"设置默认头像"
                                                              delegate:self
                                                     cancelButtonTitle:@"取                     消"
@@ -289,7 +289,8 @@
 }
 
 #pragma mark - UIActionSheetDelegate
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     if (buttonIndex == 0) {
         // 相机拍照
         if ([self isCameraAvailable] && [self doesCameraSupportTakingPhotos]) {
@@ -327,7 +328,8 @@
 }
 
 #pragma mark - ImageCropperControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
     [picker dismissViewControllerAnimated:YES completion:^() {
         UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         portraitImg = [self imageByScalingToMaxSize:portraitImg];
@@ -354,7 +356,8 @@
     }];
 }
 
-- (void)imageCropperDidCancel:(ImageCropperViewController *)cropperViewController {
+- (void)imageCropperDidCancel:(ImageCropperViewController *)cropperViewController
+{
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
     }];
 }
@@ -376,17 +379,20 @@
     return [self cameraSupportsMedia:(__bridge NSString *)kUTTypeImage sourceType:UIImagePickerControllerSourceTypeCamera];
 }
 
-- (BOOL) isPhotoLibraryAvailable {
+- (BOOL) isPhotoLibraryAvailable
+{
     return [UIImagePickerController isSourceTypeAvailable:
             UIImagePickerControllerSourceTypePhotoLibrary];
 }
 
-- (BOOL) canUserPickPhotosFromPhotoLibrary {
+- (BOOL) canUserPickPhotosFromPhotoLibrary
+{
     return [self
             cameraSupportsMedia:(__bridge NSString *)kUTTypeImage sourceType:UIImagePickerControllerSourceTypePhotoLibrary];
 }
 
-- (BOOL) cameraSupportsMedia:(NSString *)paramMediaType sourceType:(UIImagePickerControllerSourceType)paramSourceType {
+- (BOOL) cameraSupportsMedia:(NSString *)paramMediaType sourceType:(UIImagePickerControllerSourceType)paramSourceType
+{
     __block BOOL result = NO;
     if ([paramMediaType length] == 0) {
         return NO;
@@ -403,7 +409,8 @@
 }
 
 #pragma mark image scale utility
-- (UIImage *)imageByScalingToMaxSize:(UIImage *)sourceImage {
+- (UIImage *)imageByScalingToMaxSize:(UIImage *)sourceImage
+{
     if (sourceImage.size.width < ScreenWidth) return sourceImage;
     CGFloat btWidth = 0.0f;
     CGFloat btHeight = 0.0f;
@@ -418,7 +425,8 @@
     return [self imageByScalingAndCroppingForSourceImage:sourceImage targetSize:targetSize];
 }
 
-- (UIImage *)imageByScalingAndCroppingForSourceImage:(UIImage *)sourceImage targetSize:(CGSize)targetSize {
+- (UIImage *)imageByScalingAndCroppingForSourceImage:(UIImage *)sourceImage targetSize:(CGSize)targetSize
+{
     UIImage *newImage = nil;
     CGSize imageSize = sourceImage.size;
     CGFloat width = imageSize.width;
@@ -469,28 +477,32 @@
 
 
 #pragma mark - recordTag
--(void)nameBtnUpInside:(UIButton *)btn {
+- (void)nameBtnUpInside:(UIButton *)btn
+{
     recordTag = 1;
     self.edittedNameAudio = YES;
     [self audioPathSetting];
     self.viewRecord.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
 }
 
--(void)telephoneBtnUpInside:(UIButton *)btn {
+-(void)telephoneBtnUpInside:(UIButton *)btn
+{
     recordTag = 2;
     self.edittedTelephoneAudio = YES;
     [self audioPathSetting];
     self.viewRecord.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
 }
 
--(void)addressBtnUpInside:(UIButton *)btn {
+-(void)addressBtnUpInside:(UIButton *)btn
+{
     recordTag = 3;
     self.edittedAdressAudio = YES;
     [self audioPathSetting];
     self.viewRecord.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
 }
 
-- (void)audioPathSetting {
+- (void)audioPathSetting
+{
     //路径设置
     NSString *documentUrl = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     switch (recordTag) {
@@ -517,7 +529,8 @@
 }
 
 #pragma mark -audioSetting
-- (void)audioRecord {
+- (void)audioRecord
+{
     //录音设置
     NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc]init] ;
     //设置录音格式
@@ -540,7 +553,8 @@
     recorder = [[AVAudioRecorder alloc]initWithURL:urlPlay settings:recordSetting error:&error];
 }
 
-- (void)detectionVoice {
+- (void)detectionVoice
+{
     [recorder updateMeters];//刷新音量数据
     double lowPassResults = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
     NSLog(@"%lf",lowPassResults);
@@ -577,7 +591,8 @@
 }
 
 #pragma mark - recordAudio
--(void)recordBtnDown:(UIButton *)recordBtn {
+-(void)recordBtnDown:(UIButton *)recordBtn
+{
     [self.doRecord setTitle:@"正      在      录      音" forState:UIControlStateNormal];
     //创建录音文件，准备录音
     [self audioRecord];
@@ -589,7 +604,8 @@
     timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(detectionVoice) userInfo:nil repeats:YES];
 }
 
--(void)recordBtnUpInside:(UIButton *)recordBtn {
+-(void)recordBtnUpInside:(UIButton *)recordBtn
+{
     [self.doRecord setTitle:@"开      始      录      音" forState:UIControlStateNormal];
     double cTime = recorder.currentTime;
     if (1 < cTime < 180 ) {
@@ -605,7 +621,8 @@
     [timer invalidate];
 }
 
--(void)recordBtnDragUp:(UIButton *)recordBtn {
+-(void)recordBtnDragUp:(UIButton *)recordBtn
+{
     //删除录制文件
     [recorder stop];
     [recorder deleteRecording];
@@ -614,7 +631,8 @@
 }
 
 #pragma  mark - playAudio
-- (NSURL *)chooseUrl {
+- (NSURL *)chooseUrl
+{
     NSURL *url;
     switch (recordTag) {
         case 1:{
@@ -633,7 +651,8 @@
     return url;
 }
 
-- (NSURL *)chooseContactUrl {
+- (NSURL *)chooseContactUrl
+{
     NSURL *url;
         switch (recordTag) {
         case 1:{
@@ -667,7 +686,8 @@
     return url;
 }
 
-- (void)playBtnUpInside:(UIButton *)playBtn {
+- (void)playBtnUpInside:(UIButton *)playBtn
+{
     if (self.avPlay.playing) {
         [self.avPlay stop];
         return;
@@ -705,7 +725,8 @@
 }
 
 #pragma mark - Core Data
-- (void)saveContactUpInSide:(UIButton *)btn {
+- (void)saveContactUpInSide:(UIButton *)btn
+{
     //让CoreData在上下文中创建一个新对象(托管对象)
     Contact *contacter = nil;
     if (!self.editContact) {
@@ -774,7 +795,8 @@
 }
 
 #pragma mark - editAlbum
-- (void)editAlbum:(UIButton *)btn {
+- (void)editAlbum:(UIButton *)btn
+{
     // Show saved photos on top
     ipc.shouldShowSavedPhotosOnTop = YES;
     ipc.shouldChangeStatusBarStyle = YES;
@@ -794,7 +816,8 @@
     [self presentViewController:ipc animated:YES completion:NULL];
 }
 
-- (void)editAlbumInitial {
+- (void)editAlbumInitial
+{
     self.selectedPhotos = [NSMutableArray array];
     __block AddViewController *blockSelf = self;
     ipc = [[AGImagePickerController alloc] initWithDelegate:self];
@@ -831,7 +854,8 @@
 #pragma mark - AGImagePickerControllerDelegate methods
 - (NSUInteger)agImagePickerController:(AGImagePickerController *)picker
          numberOfItemsPerRowForDevice:(AGDeviceType)deviceType
-              andInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+              andInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
     if (deviceType == AGDeviceTypeiPad) {
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
             return 7;
@@ -860,26 +884,30 @@
 }
 
 #pragma mark - textFieldDelegate
-- (void)keyboardHide:(UITapGestureRecognizer*)tap {
+- (void)keyboardHide:(UITapGestureRecognizer*)tap
+{
     [self.textFieldName resignFirstResponder];
     [self.textFieldTelephone resignFirstResponder];
     [self.textFieldAddress resignFirstResponder];
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
     self.currentView = textField;
     [self keyboardWillShow];
     return YES;
 }
 
-- (void)keyboardWillShow {
+- (void)keyboardWillShow
+{
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.3];
     self.scrollViewMain.contentOffset = CGPointMake(0 ,self.currentView.frame.origin.y + self.currentView.superview.frame.origin.y-120);
     [UIView commitAnimations];    
 }
 
--(void)keyboardDidHide:(NSNotification *)notification {
+-(void)keyboardDidHide:(NSNotification *)notification
+{
     [UIView animateWithDuration:0.3 animations:^{
         CGRect f = self.view.frame;
         f.origin.y = 0.0f;
@@ -887,12 +915,14 @@
     }];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
     [textField resignFirstResponder];
     return YES;
 }
 
-- (void)defaultImageTapped {
+- (void)defaultImageTapped
+{
     [UIView animateWithDuration:0.3 animations:^{
         self.defaultImageDisplay.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
     }];

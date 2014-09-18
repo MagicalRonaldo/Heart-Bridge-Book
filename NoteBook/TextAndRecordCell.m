@@ -8,6 +8,7 @@
 
 #import "TextAndRecordCell.h"
 #import "UILabel+HB.h"
+#import "UIButton+HB.h"
 
 @interface TextAndRecordCell ()
 
@@ -25,9 +26,16 @@
         self.infoLabel.frame = CGRectMake(15, 20, 0, 0);
         [self.contentView addSubview:self.infoLabel];
         
+        self.infoTextField = [[UITextField alloc] initWithFrame:CGRectMake(15 + 50 + 20, 10, 200, 40)];
+        self.infoTextField.borderStyle = UITextBorderStyleRoundedRect;
+        
         self.recordLabel = [UILabel labelFont:[UIFont H2Font] textColor:[UIColor BlackColor]];
         self.recordLabel.frame = CGRectMake(15, 80, 0, 0);
         [self.contentView addSubview:self.recordLabel];
+        
+        self.recordButton = [UIButton buttonNomalColor:[UIColor BlueColor] highLightColor:[UIColor colorWithHex:0x2069a6 alpha:1.0] coRadius:2.0];
+        [self.contentView addSubview:self.recordButton];
+        
     }
     return self;
 }

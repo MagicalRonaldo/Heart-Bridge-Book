@@ -68,6 +68,7 @@
 		49D4250D19B9A2700043DD5C /* UIImage+HB.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4250C19B9A2700043DD5C /* UIImage+HB.m */; };
 		49D4251119B9C9CF0043DD5C /* UIView+HB.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4251019B9C9CF0043DD5C /* UIView+HB.m */; };
 		49D4251319B9D3950043DD5C /* button_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D4251219B9D3950043DD5C /* button_blue@2x.png */; };
+		49DBEBFD19CA6BF600DAC6E2 /* UIButton+HB.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DBEBFC19CA6BF600DAC6E2 /* UIButton+HB.m */; };
 		49DDD3AD1883A8E500761532 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DDD3AC1883A8E500761532 /* AddViewController.m */; };
 		49F5D34A19C918E800CA35CD /* BaseLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D34919C918E800CA35CD /* BaseLineView.m */; };
 		49F5D34E19C91B9B00CA35CD /* ContactImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D34D19C91B9B00CA35CD /* ContactImageCell.m */; };
@@ -180,6 +181,8 @@
 		49D4250F19B9C9CF0043DD5C /* UIView+HB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HB.h"; sourceTree = "<group>"; };
 		49D4251019B9C9CF0043DD5C /* UIView+HB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HB.m"; sourceTree = "<group>"; };
 		49D4251219B9D3950043DD5C /* button_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_blue@2x.png"; sourceTree = "<group>"; };
+		49DBEBFB19CA6BF600DAC6E2 /* UIButton+HB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+HB.h"; sourceTree = "<group>"; };
+		49DBEBFC19CA6BF600DAC6E2 /* UIButton+HB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+HB.m"; sourceTree = "<group>"; };
 		49DDD3AB1883A8E500761532 /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		49DDD3AC1883A8E500761532 /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 		49F5D34819C918E800CA35CD /* BaseLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLineView.h; sourceTree = "<group>"; };
@@ -367,6 +370,8 @@
 				49F5D35319C9254600CA35CD /* UILabel+HB.m */,
 				49F5D35519C92F6200CA35CD /* UITextField+HB.h */,
 				49F5D35619C92F6200CA35CD /* UITextField+HB.m */,
+				49DBEBFB19CA6BF600DAC6E2 /* UIButton+HB.h */,
+				49DBEBFC19CA6BF600DAC6E2 /* UIButton+HB.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -596,6 +601,7 @@
 				491215AE19B89AB600E576BA /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				490A49001891078F001AC8B2 /* AGImagePickerController.m in Sources */,
 				490A49011891078F001AC8B2 /* AGIPCAlbumsController.m in Sources */,
+				49DBEBFD19CA6BF600DAC6E2 /* UIButton+HB.m in Sources */,
 				491215AA19B89AB600E576BA /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				491215AD19B89AB600E576BA /* SWTableViewCell.m in Sources */,
 				490A49061891078F001AC8B2 /* ALAsset+AGIPC.m in Sources */,

@@ -83,7 +83,7 @@
     viewImageLine.backgroundColor = [UIColor grayColor];
     [viewImageScope addSubview:viewImageLine];
     
-
+    
     UIView *viewNameScope = [[UIView alloc] initWithFrame:CGRectMake(0, 180, ScreenWidth, 128)];
     [self.scrollViewMain addSubview:viewNameScope];
     
@@ -266,9 +266,8 @@
     imageTapRecognizer.numberOfTapsRequired = 1;
     [self.imageViewPhoto addGestureRecognizer:imageTapRecognizer];
     self.imageViewPhoto.userInteractionEnabled = YES;
-
     
-    self.scrollViewMain.contentSize = CGSizeMake(ScreenWidth,750);
+    self.scrollViewMain.contentSize = CGSizeMake(ScreenWidth, 750);
 }
 
 - (void)didReceiveMemoryWarning {

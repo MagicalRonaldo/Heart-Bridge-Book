@@ -60,15 +60,18 @@
 		491215C619B8A45800E576BA /* HBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 491215C519B8A45800E576BA /* HBTableViewCell.m */; };
 		4918F2EC19B4AD9100A8C686 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4918F2EA19B4AD9100A8C686 /* Icon.png */; };
 		4918F2ED19B4AD9100A8C686 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4918F2EB19B4AD9100A8C686 /* Icon@2x.png */; };
+		4927B79419D0367000F04F93 /* BaseDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927B79319D0367000F04F93 /* BaseDeviceInfo.m */; };
 		4928635A18B4A11C000C11F2 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4928635918B4A11C000C11F2 /* ShowViewController.m */; };
 		497E82A518AE320200393EA3 /* ImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497E82A418AE320200393EA3 /* ImageCropperViewController.m */; };
 		499FAD55188EA63B009D2359 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499FAD54188EA63B009D2359 /* AVFoundation.framework */; };
 		49D4250719B99A3D0043DD5C /* APPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4250619B99A3D0043DD5C /* APPManager.m */; };
-		49D4250A19B99BDA0043DD5C /* HBNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4250919B99BDA0043DD5C /* HBNavigationControllerViewController.m */; };
+		49D4250A19B99BDA0043DD5C /* HBNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4250919B99BDA0043DD5C /* HBNavigationController.m */; };
 		49D4250D19B9A2700043DD5C /* UIImage+HB.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4250C19B9A2700043DD5C /* UIImage+HB.m */; };
 		49D4251119B9C9CF0043DD5C /* UIView+HB.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4251019B9C9CF0043DD5C /* UIView+HB.m */; };
 		49D4251319B9D3950043DD5C /* button_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D4251219B9D3950043DD5C /* button_blue@2x.png */; };
 		49DBEBFD19CA6BF600DAC6E2 /* UIButton+HB.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DBEBFC19CA6BF600DAC6E2 /* UIButton+HB.m */; };
+		49DBEC0119CAC0CF00DAC6E2 /* HandleContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DBEC0019CAC0CF00DAC6E2 /* HandleContactViewController.m */; };
+		49DBEC0419CAC26900DAC6E2 /* HBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DBEC0319CAC26900DAC6E2 /* HBBaseViewController.m */; };
 		49DDD3AD1883A8E500761532 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DDD3AC1883A8E500761532 /* AddViewController.m */; };
 		49F5D34A19C918E800CA35CD /* BaseLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D34919C918E800CA35CD /* BaseLineView.m */; };
 		49F5D34E19C91B9B00CA35CD /* ContactImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D34D19C91B9B00CA35CD /* ContactImageCell.m */; };
@@ -167,6 +170,8 @@
 		491215C519B8A45800E576BA /* HBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTableViewCell.m; sourceTree = "<group>"; };
 		4918F2EA19B4AD9100A8C686 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		4918F2EB19B4AD9100A8C686 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		4927B79219D0367000F04F93 /* BaseDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDeviceInfo.h; sourceTree = "<group>"; };
+		4927B79319D0367000F04F93 /* BaseDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDeviceInfo.m; sourceTree = "<group>"; };
 		4928635818B4A11C000C11F2 /* ShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowViewController.h; sourceTree = "<group>"; };
 		4928635918B4A11C000C11F2 /* ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
 		497E82A418AE320200393EA3 /* ImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCropperViewController.m; sourceTree = "<group>"; };
@@ -174,8 +179,8 @@
 		499FAD54188EA63B009D2359 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		49D4250519B99A3D0043DD5C /* APPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPManager.h; sourceTree = "<group>"; };
 		49D4250619B99A3D0043DD5C /* APPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPManager.m; sourceTree = "<group>"; };
-		49D4250819B99BDA0043DD5C /* HBNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBNavigationControllerViewController.h; sourceTree = "<group>"; };
-		49D4250919B99BDA0043DD5C /* HBNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBNavigationControllerViewController.m; sourceTree = "<group>"; };
+		49D4250819B99BDA0043DD5C /* HBNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBNavigationController.h; sourceTree = "<group>"; };
+		49D4250919B99BDA0043DD5C /* HBNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBNavigationController.m; sourceTree = "<group>"; };
 		49D4250B19B9A2700043DD5C /* UIImage+HB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+HB.h"; sourceTree = "<group>"; };
 		49D4250C19B9A2700043DD5C /* UIImage+HB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+HB.m"; sourceTree = "<group>"; };
 		49D4250F19B9C9CF0043DD5C /* UIView+HB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HB.h"; sourceTree = "<group>"; };
@@ -183,6 +188,10 @@
 		49D4251219B9D3950043DD5C /* button_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_blue@2x.png"; sourceTree = "<group>"; };
 		49DBEBFB19CA6BF600DAC6E2 /* UIButton+HB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+HB.h"; sourceTree = "<group>"; };
 		49DBEBFC19CA6BF600DAC6E2 /* UIButton+HB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+HB.m"; sourceTree = "<group>"; };
+		49DBEBFF19CAC0CF00DAC6E2 /* HandleContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandleContactViewController.h; sourceTree = "<group>"; };
+		49DBEC0019CAC0CF00DAC6E2 /* HandleContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandleContactViewController.m; sourceTree = "<group>"; };
+		49DBEC0219CAC26900DAC6E2 /* HBBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBBaseViewController.h; sourceTree = "<group>"; };
+		49DBEC0319CAC26900DAC6E2 /* HBBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBBaseViewController.m; sourceTree = "<group>"; };
 		49DDD3AB1883A8E500761532 /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		49DDD3AC1883A8E500761532 /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 		49F5D34819C918E800CA35CD /* BaseLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLineView.h; sourceTree = "<group>"; };
@@ -283,10 +292,10 @@
 		490D038818754B760094AD0F /* NoteBook */ = {
 			isa = PBXGroup;
 			children = (
-				49F5D34B19C91B2F00CA35CD /* view */,
-				490D039118754B760094AD0F /* AppDelegate.h */,
-				490D039218754B760094AD0F /* AppDelegate.m */,
-				491215B019B89DD800E576BA /* Base */,
+				4927B79519D0367E00F04F93 /* baseConfig */,
+				49DBEBFE19CABFD700DAC6E2 /* appDelegate */,
+				49F5D34B19C91B2F00CA35CD /* baseViewController */,
+				491215B019B89DD800E576BA /* BaseView */,
 				4912159D19B89A8A00E576BA /* SWTableViewCell */,
 				497E82AB18AE337500393EA3 /* cell */,
 				497E82AA18AE335D00393EA3 /* Controllers */,
@@ -345,7 +354,7 @@
 			name = SWTableViewCell;
 			sourceTree = "<group>";
 		};
-		491215B019B89DD800E576BA /* Base */ = {
+		491215B019B89DD800E576BA /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
 				491215C119B8A25000E576BA /* UIColor+HB.h */,
@@ -358,8 +367,6 @@
 				491215C519B8A45800E576BA /* HBTableViewCell.m */,
 				49D4250519B99A3D0043DD5C /* APPManager.h */,
 				49D4250619B99A3D0043DD5C /* APPManager.m */,
-				49D4250819B99BDA0043DD5C /* HBNavigationControllerViewController.h */,
-				49D4250919B99BDA0043DD5C /* HBNavigationControllerViewController.m */,
 				49D4250B19B9A2700043DD5C /* UIImage+HB.h */,
 				49D4250C19B9A2700043DD5C /* UIImage+HB.m */,
 				49D4250F19B9C9CF0043DD5C /* UIView+HB.h */,
@@ -373,7 +380,7 @@
 				49DBEBFB19CA6BF600DAC6E2 /* UIButton+HB.h */,
 				49DBEBFC19CA6BF600DAC6E2 /* UIButton+HB.m */,
 			);
-			name = Base;
+			name = BaseView;
 			sourceTree = "<group>";
 		};
 		49196D691888D0DE009745A7 /* pic-audio */ = {
@@ -396,6 +403,15 @@
 			);
 			name = "pic-audio";
 			path = ..;
+			sourceTree = "<group>";
+		};
+		4927B79519D0367E00F04F93 /* baseConfig */ = {
+			isa = PBXGroup;
+			children = (
+				4927B79219D0367000F04F93 /* BaseDeviceInfo.h */,
+				4927B79319D0367000F04F93 /* BaseDeviceInfo.m */,
+			);
+			name = baseConfig;
 			sourceTree = "<group>";
 		};
 		497E82A718AE32F300393EA3 /* Resources */ = {
@@ -433,6 +449,8 @@
 				490D039818754B760094AD0F /* HomeViewController.m */,
 				4928635818B4A11C000C11F2 /* ShowViewController.h */,
 				4928635918B4A11C000C11F2 /* ShowViewController.m */,
+				49DBEBFF19CAC0CF00DAC6E2 /* HandleContactViewController.h */,
+				49DBEC0019CAC0CF00DAC6E2 /* HandleContactViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -458,11 +476,24 @@
 			name = Components;
 			sourceTree = "<group>";
 		};
-		49F5D34B19C91B2F00CA35CD /* view */ = {
+		49DBEBFE19CABFD700DAC6E2 /* appDelegate */ = {
 			isa = PBXGroup;
 			children = (
+				490D039118754B760094AD0F /* AppDelegate.h */,
+				490D039218754B760094AD0F /* AppDelegate.m */,
 			);
-			name = view;
+			name = appDelegate;
+			sourceTree = "<group>";
+		};
+		49F5D34B19C91B2F00CA35CD /* baseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				49D4250819B99BDA0043DD5C /* HBNavigationController.h */,
+				49D4250919B99BDA0043DD5C /* HBNavigationController.m */,
+				49DBEC0219CAC26900DAC6E2 /* HBBaseViewController.h */,
+				49DBEC0319CAC26900DAC6E2 /* HBBaseViewController.m */,
+			);
+			name = baseViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -602,6 +633,7 @@
 				490A49001891078F001AC8B2 /* AGImagePickerController.m in Sources */,
 				490A49011891078F001AC8B2 /* AGIPCAlbumsController.m in Sources */,
 				49DBEBFD19CA6BF600DAC6E2 /* UIButton+HB.m in Sources */,
+				49DBEC0419CAC26900DAC6E2 /* HBBaseViewController.m in Sources */,
 				491215AA19B89AB600E576BA /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				491215AD19B89AB600E576BA /* SWTableViewCell.m in Sources */,
 				490A49061891078F001AC8B2 /* ALAsset+AGIPC.m in Sources */,
@@ -613,13 +645,15 @@
 				491215AF19B89AB600E576BA /* SWUtilityButtonView.m in Sources */,
 				4905E942188E1AC400DFC415 /* Model.xcdatamodeld in Sources */,
 				49D4251119B9C9CF0043DD5C /* UIView+HB.m in Sources */,
-				49D4250A19B99BDA0043DD5C /* HBNavigationControllerViewController.m in Sources */,
+				49D4250A19B99BDA0043DD5C /* HBNavigationController.m in Sources */,
 				490A49021891078F001AC8B2 /* AGIPCAssetsController.m in Sources */,
 				49D4250719B99A3D0043DD5C /* APPManager.m in Sources */,
+				4927B79419D0367000F04F93 /* BaseDeviceInfo.m in Sources */,
 				490D039918754B760094AD0F /* HomeViewController.m in Sources */,
 				490D038F18754B760094AD0F /* main.m in Sources */,
 				491215B719B89F2C00E576BA /* BaseModel.m in Sources */,
 				490A49031891078F001AC8B2 /* AGIPCGridCell.m in Sources */,
+				49DBEC0119CAC0CF00DAC6E2 /* HandleContactViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,8 +727,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -725,9 +759,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Release;
 		};

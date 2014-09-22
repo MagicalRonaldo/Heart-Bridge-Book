@@ -1,5 +1,5 @@
 //
-//  HBNavigationControllerViewController.h
+//  HBNavigationController.h
 //  NoteBook
 //
 //  Created by xubing on 14-9-5.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HBNavigationControllerViewController : UINavigationController
+@interface HBNavigationController : UINavigationController
 
 @end

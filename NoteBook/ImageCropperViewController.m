@@ -29,7 +29,8 @@
 
 @implementation ImageCropperViewController
 
-- (id)initWithImage:(UIImage *)originalImage cropFrame:(CGRect)cropFrame limitScaleRatio:(NSInteger)limitRatio {
+- (id)initWithImage:(UIImage *)originalImage cropFrame:(CGRect)cropFrame limitScaleRatio:(NSInteger)limitRatio
+{
     self = [super init];
     if (self) {
         self.cropFrame = cropFrame;
@@ -39,7 +40,8 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self initView];
     [self initControlBtn];
@@ -49,7 +51,8 @@
     return NO;
 }
 
-- (void)initView {
+- (void)initView
+{
     self.showImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     [self.showImgView setMultipleTouchEnabled:YES];
     [self.showImgView setUserInteractionEnabled:YES];
@@ -155,7 +158,6 @@
     UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchView:)];
     [self.view addGestureRecognizer:pinchGestureRecognizer];
     
-    
     UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panView:)];
     [self.view addGestureRecognizer:panGestureRecognizer];
 }
@@ -165,8 +167,7 @@
     if (pinchGestureRecognizer.state == UIGestureRecognizerStateBegan || pinchGestureRecognizer.state == UIGestureRecognizerStateChanged) {
         view.transform = CGAffineTransformScale(view.transform, pinchGestureRecognizer.scale, pinchGestureRecognizer.scale);
         pinchGestureRecognizer.scale = 1;
-    }
-    else if (pinchGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+    } else if (pinchGestureRecognizer.state == UIGestureRecognizerStateEnded) {
         CGRect newFrame = self.showImgView.frame;
         newFrame = [self handleScaleOverflow:newFrame];
         newFrame = [self handleBorderOverflow:newFrame];
@@ -177,7 +178,8 @@
     }
 }
 
-- (void) panView:(UIPanGestureRecognizer *)panGestureRecognizer {
+- (void) panView:(UIPanGestureRecognizer *)panGestureRecognizer
+{
     UIView *view = self.showImgView;
     if (panGestureRecognizer.state == UIGestureRecognizerStateBegan || panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
         // calculate accelerator
@@ -200,8 +202,8 @@
     }
 }
 
-- (CGRect)handleScaleOverflow:(CGRect)newFrame {
-    
+- (CGRect)handleScaleOverflow:(CGRect)newFrame
+{
     CGPoint oriCenter = CGPointMake(newFrame.origin.x + newFrame.size.width/2, newFrame.origin.y + newFrame.size.height/2);
     if (newFrame.size.width < self.oldFrame.size.width) {
         newFrame = self.oldFrame;
@@ -214,8 +216,8 @@
     return newFrame;
 }
 
-- (CGRect)handleBorderOverflow:(CGRect)newFrame {
-    
+- (CGRect)handleBorderOverflow:(CGRect)newFrame
+{
     if (newFrame.origin.x > self.cropFrame.origin.x) newFrame.origin.x = self.cropFrame.origin.x;
     if (CGRectGetMaxX(newFrame) < self.cropFrame.size.width) newFrame.origin.x = self.cropFrame.size.width - newFrame.size.width;
     
@@ -230,7 +232,8 @@
     return newFrame;
 }
 
--(UIImage *)getSubImage{
+- (UIImage *)getSubImage
+{
     CGRect squareFrame = self.cropFrame;
     CGFloat scaleRatio = self.latestFrame.size.width / self.originalImage.size.width;
     CGFloat x = (squareFrame.origin.x - self.latestFrame.origin.x) / scaleRatio;

@@ -36,6 +36,8 @@
         self.recordButton = [UIButton buttonNomalColor:[UIColor BlueColor] highLightColor:[UIColor colorWithHex:0x2069a6 alpha:1.0] coRadius:2.0];
         [self.contentView addSubview:self.recordButton];
         
+        self.playButton = [UIButton buttonNomalColor:[UIColor BlueColor] highLightColor:[UIColor colorWithHex:0x2069a6 alpha:1.0] coRadius:2.0];
+        [self.contentView addSubview:self.playButton];
     }
     return self;
 }

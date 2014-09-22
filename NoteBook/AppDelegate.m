@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
-#import "HBNavigationControllerViewController.h"
+#import "HBNavigationController.h"
 
 @implementation AppDelegate
 
@@ -18,7 +18,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     HomeViewController *lanchController = [[HomeViewController alloc] init];
-    HBNavigationControllerViewController *navController = [[HBNavigationControllerViewController alloc] initWithRootViewController:lanchController];
+    HBNavigationController *navController = [[HBNavigationController alloc] initWithRootViewController:lanchController];
     self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
     return YES;

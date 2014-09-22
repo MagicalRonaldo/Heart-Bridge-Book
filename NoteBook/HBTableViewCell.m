@@ -60,11 +60,11 @@
 - (void)showBottonLineWithCellHeight:(CGFloat)cellH andOffsetX:(CGFloat)offsetX
 {
     if (self.lineView == nil) {
-        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(offsetX, cellH - 0.5, ScreenWidth - offsetX, 0.5)];
+        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(offsetX, cellH - 0.5, ScreenWidth - 2 * offsetX, 0.5)];
         self.lineView.backgroundColor = [UIColor GrayLine1Color];
         [self.contentView addSubview:self.lineView];
     } else {
-        self.lineView.frame = CGRectMake(offsetX, cellH - 0.5, ScreenWidth - offsetX, 0.5);
+        self.lineView.frame = CGRectMake(offsetX, cellH - 0.5, ScreenWidth - 2 * offsetX, 0.5);
     }
 }
 

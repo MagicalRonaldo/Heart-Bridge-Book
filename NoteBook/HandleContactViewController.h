@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "HBBaseViewController.h"
+#import "AppDelegate.h"
+#import "HomeViewController.h"
+#import "AGImagePickerController.h"
+#import "Contact.h"
 
-@interface HandleContactViewController : HBBaseViewController<UITableViewDataSource, UITableViewDelegate>
+@interface HandleContactViewController : HBBaseViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+
+@property (nonatomic, strong) Contact *contact;
 
 @end

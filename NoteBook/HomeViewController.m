@@ -8,7 +8,6 @@
 
 #import "HomeViewController.h"
 #import "Contact.h"
-#import "AddViewController.h"
 #import "ShowViewController.h"
 #import "UIColor+HB.h"
 
@@ -52,9 +51,9 @@
     lb.textColor = [UIColor whiteColor];
     self.navigationItem.titleView = lb;
     
-    UIBarButtonItem *storeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContactInfo)];
-    storeButton.tintColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = storeButton;
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContactInfo)];
+    addButton.tintColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = addButton;
     self.navigationController.navigationBar.hidden = NO;
     
     [self.contactTableView reloadData];
@@ -152,6 +151,7 @@
 - (void)addContactInfo
 {
     AddViewController *addContact = [[AddViewController alloc] init];
+//    HandleContactViewController *addContact = [[HandleContactViewController alloc] init];
     [self.navigationController pushViewController:addContact animated:YES];
 }
 

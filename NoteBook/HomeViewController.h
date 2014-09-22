@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "AddViewController.h"
+#import "HandleContactViewController.h"
 #import "ContactCell.h"
 
 @interface HomeViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,NSFetchedResultsControllerDelegate,SWTableViewCellDelegate>

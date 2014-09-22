@@ -7,6 +7,8 @@
 //
 
 #import "HandleContactViewController.h"
+#import "TextAndRecordCell.h"
+#import "ContactImageCell.h"
 
 @interface HandleContactViewController ()
 
@@ -27,6 +29,13 @@
 {
     [super viewDidLoad];
     [self setTitleViewWithString:@"添加联系人"];
+    
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64)];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:tableView];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -55,8 +64,29 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    return cell;
+    if (indexPath.section == 0) {
+        ContactImageCell *cell = [[ContactImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        [cell showBottonLineWithCellHeight:170.0 andOffsetX:5.0];
+        return cell;
+    } else {
+        TextAndRecordCell *cell = [[TextAndRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        [cell showBottonLineWithCellHeight:128.0 andOffsetX:5.0];
+        switch (indexPath.section) {
+            case 1:
+                cell.infoLabel.text = @"姓名:";
+                break;
+            case 2:
+                cell.infoLabel.text = @"电话:";
+                break;
+            case 3:
+                cell.infoLabel.text = @"地址:";
+                break;
+            default:
+                break;
+        }
+        cell.infoTextField.delegate = self;
+        return cell;
+    }
 }
 
 - (void)didReceiveMemoryWarning

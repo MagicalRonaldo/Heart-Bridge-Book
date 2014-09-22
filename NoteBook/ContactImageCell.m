@@ -14,10 +14,9 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.defaultContactImage = [[UIImageView alloc] initWithFrame:(CGRectMake(20, 2, 150, 150))];
+        self.defaultContactImage = [[UIImageView alloc] initWithFrame:(CGRectMake(20, 10, 150, 150))];
         self.defaultContactImage.layer.cornerRadius = 15.0f;
         self.defaultContactImage.layer.masksToBounds = YES;
-//        self.defaultContactImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.contact.defaultImagePath]]];
         self.defaultContactImage.image = [UIImage imageNamed:@"08.png"];
         [self.contentView addSubview:self.defaultContactImage];
         

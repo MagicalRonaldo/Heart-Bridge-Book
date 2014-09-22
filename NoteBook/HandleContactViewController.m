@@ -29,6 +29,7 @@
 {
     [super viewDidLoad];
     [self setTitleViewWithString:@"添加联系人"];
+    self.navigationController.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64)];
     tableView.delegate = self;
@@ -67,6 +68,7 @@
     if (indexPath.section == 0) {
         ContactImageCell *cell = [[ContactImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         [cell showBottonLineWithCellHeight:170.0 andOffsetX:5.0];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else {
         TextAndRecordCell *cell = [[TextAndRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -84,6 +86,7 @@
             default:
                 break;
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.infoTextField.delegate = self;
         return cell;
     }

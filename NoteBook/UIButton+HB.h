@@ -13,6 +13,7 @@
 @interface UIButton (HB)
 
 + (UIButton *)buttonNomalColor:(UIColor *)nomalColor highLightColor:(UIColor *)hlColor coRadius:(CGFloat)radius;
++ (UIButton *)buttonTextColor:(UIColor *)TC cordius:(CGFloat)cor boderWidth:(CGFloat)width;
 
 - (void)setTitle:(NSString *)title titleFont:(UIFont *)font titleColor:(UIColor *)color;
 

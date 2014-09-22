@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "HBTableViewCell.h"
+#import "UILabel+HB.h"
+#import "UIButton+HB.h"
 
 @interface ContactImageCell: HBTableViewCell
 

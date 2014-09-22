@@ -21,6 +21,20 @@
     return colorButton;
 }
 
++ (UIButton *)buttonTextColor:(UIColor *)TC cordius:(CGFloat)cor boderWidth:(CGFloat)width
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.tintColor = TC;
+    button.backgroundColor = [UIColor clearColor];
+    button.layer.cornerRadius  = cor;
+    button.layer.masksToBounds = YES;
+    button.layer.borderColor = [TC CGColor];
+    button.layer.borderWidth = width;
+    button.tintColor = [UIColor brownColor];
+    
+    return button;
+}
+
 - (void)setTitle:(NSString *)title titleFont:(UIFont *)font titleColor:(UIColor *)color
 {
     [self setTitle:title forState:UIControlStateNormal];

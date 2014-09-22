@@ -12,7 +12,7 @@
 
 @interface UILabel (HB)
 
-+ (UILabel *)labelFont:(UIFont *)font textColor:(UIColor *)color andText:(NSString *)text;
++ (UILabel *)labelFont:(UIFont *)font textColor:(UIColor *)color Text:(NSString *)text;
 + (UILabel *)labelFont:(UIFont *)font textColor:(UIColor *)TC;
 + (UILabel *)getTitleView:(NSString *)titleStr;
 

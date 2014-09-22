@@ -24,7 +24,7 @@
         // Custom initialization
         self.navigationBar.translucent = NO;
         if (![APPManager lowThanIOS7]) {
-            self.navigationBar.barTintColor = [UIColor orangeColor];
+            self.navigationBar.barTintColor = [UIColor brownColor];
         } else {
             [[UINavigationBar appearance] setBackgroundImage:[UIImage createImageWithColor:[UIColor orangeColor]] forBarMetrics:UIBarMetricsDefault];
             [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;

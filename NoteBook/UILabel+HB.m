@@ -11,7 +11,7 @@
 
 @implementation UILabel (HB)
 
-+ (UILabel *)labelFont:(UIFont *)font textColor:(UIColor *)color andText:(NSString *)text
++ (UILabel *)labelFont:(UIFont *)font textColor:(UIColor *)color Text:(NSString *)text
 {
     UILabel *label = [[UILabel alloc] init];
     label.font = font;

@@ -150,8 +150,8 @@
 #pragma mark - delete,edit,add,update
 - (void)addContactInfo
 {
-    AddViewController *addContact = [[AddViewController alloc] init];
-//    HandleContactViewController *addContact = [[HandleContactViewController alloc] init];
+//    AddViewController *addContact = [[AddViewController alloc] init];
+    HandleContactViewController *addContact = [[HandleContactViewController alloc] init];
     [self.navigationController pushViewController:addContact animated:YES];
 }
 

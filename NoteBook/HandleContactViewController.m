@@ -32,6 +32,8 @@
 
 @property (nonatomic) BOOL edittedImage;
 @property (nonatomic, strong) UIImage *defaultImage;
+@property (nonatomic, strong) UITextField *currentTextField;
+
 @end
 
 @implementation HandleContactViewController
@@ -147,6 +149,7 @@
                 break;
             case 2:
                 cell.infoLabel.text = @"电话:";
+                cell.infoTextField.keyboardType = UIKeyboardTypeDecimalPad;
                 break;
             case 3:
                 cell.infoLabel.text = @"地址:";
@@ -432,7 +435,25 @@
 
 - (void)keyboardHide:(UITapGestureRecognizer*)tap
 {
-    [self.view endEditing:YES];
+    [self.tableView endEditing:YES];
+}
+
+//- (void)textFieldDidBeginEditing:(UITextField *)textField {
+//    NSInteger i = textField.frame.origin.y + (64 +215) - ScreenHeight;
+//    if (i > 0) {
+//        [UIView beginAnimations:nil context:NULL];
+//        [UIView setAnimationDelegate:self];
+//        [UIView setAnimationDuration:0.5];
+//        [UIView setAnimationBeginsFromCurrentState:YES];
+//        self.tableView.contentOffset = CGPointMake(0, textField.frame.origin.y + (64 +215));
+//        [UIView commitAnimations];
+//    }
+//}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,33 +7,73 @@
 //
 
 #import "HandleContactViewController.h"
+#import "AppDelegate.h"
+#import "AGIPCToolbarItem.h"
+#import "ImageCropperViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+
 #import "TextAndRecordCell.h"
 #import "ContactImageCell.h"
 #import "UIButton+HB.h"
 #import "UIFont+HB.h"
 #import "UIView+HB.h"
 
-@interface HandleContactViewController ()<InfoCellDelegate>
+@interface HandleContactViewController ()<InfoCellDelegate, ImageCropperDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) AppDelegate *myDelegate;
+@property (nonatomic, strong) AGImagePickerController *ipc;
+@property (nonatomic, strong) NSMutableArray *selectedPhotos;
+@property (nonatomic, strong) NSString *defaultImagePathString;
+@property (nonatomic, strong) NSString *namePathString;
+@property (nonatomic, strong) NSString *telephonePathString;
+@property (nonatomic, strong) NSString *addressPathString;
 
+@property (nonatomic) BOOL edittedImage;
+@property (nonatomic, strong) UIImage *defaultImage;
 @end
 
 @implementation HandleContactViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)editAlbumInitial
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    self.selectedPhotos = [NSMutableArray array];
+    __block HandleContactViewController *blockSelf = self;
+    self.ipc = [[AGImagePickerController alloc] initWithDelegate:self];
+    self.ipc.didFailBlock = ^(NSError *error) {
+        NSLog(@"Fail. Error: %@", error);
+        if (error == nil) {
+            [blockSelf.selectedPhotos removeAllObjects];
+            NSLog(@"User has cancelled.");
+            [blockSelf dismissViewControllerAnimated:YES completion:NULL];
+        } else {
+            double delayInSeconds = 0.5;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [blockSelf dismissViewControllerAnimated:YES completion:NULL];
+            });
+        }
+        
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+        
+    };
+    self.ipc.didFinishBlock = ^(NSArray *info) {
+        [blockSelf.selectedPhotos setArray:info];
+        NSLog(@"Info: %@", info);
+        [blockSelf dismissViewControllerAnimated:YES completion:NULL];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    };
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self setTitleViewWithString:@"添加联系人"];
+    
+    //获取当前应用程序的委托（UIApplication sharedApplication为整个应用程序上下文）
+    self.myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [self editAlbumInitial];
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64)];
     self.tableView.delegate = self;
@@ -90,8 +130,13 @@
         ContactImageCell *cell = [[ContactImageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         [cell showBottonLineWithCellHeight:170.0 andOffsetX:5.0];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (self.edittedImage) {
+            cell.defaultContactImage.image = self.defaultImage;
+        }
+        
         [cell.selectDefaultContactImage addTarget:self action:@selector(editDefaultImage:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contactAlbum addTarget:self action:@selector(editDefaultImage:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contactAlbum addTarget:self action:@selector(editAlbum:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     } else {
         TextAndRecordCell *cell = [[TextAndRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -126,6 +171,253 @@
     
     actionSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
     [actionSheet showInView:self.view];
+}
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        // 相机拍照
+        if ([self isCameraAvailable] && [self doesCameraSupportTakingPhotos]) {
+            UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+            controller.sourceType = UIImagePickerControllerSourceTypeCamera;
+            if ([self isFrontCameraAvailable]) {
+                controller.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+            }
+            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+            controller.mediaTypes = mediaTypes;
+            controller.delegate = self;
+            [self presentViewController:controller
+                               animated:YES
+                             completion:^(void){
+                             }];
+        }
+        
+    } else if (buttonIndex == 1) {
+        // 从相册中选取
+        if ([self isPhotoLibraryAvailable]) {
+            UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+            controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+            controller.mediaTypes = mediaTypes;
+            controller.delegate = self;
+            [self presentViewController:controller
+                               animated:YES
+                             completion:^(void){
+                                 
+                             }];
+        }
+    }
+}
+
+#pragma mark - ImageCropperControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^() {
+        UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        portraitImg = [self imageByScalingToMaxSize:portraitImg];
+        // 裁剪
+        ImageCropperViewController *imgEditorVC = [[ImageCropperViewController alloc] initWithImage:portraitImg cropFrame:CGRectMake(0, 100.0f, self.view.frame.size.width, self.view.frame.size.width) limitScaleRatio:3.0];
+        imgEditorVC.delegate = self;
+        [self presentViewController:imgEditorVC animated:YES completion:^{
+        }];
+    }];
+}
+
+- (void)imageCropper:(ImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
+    //set the path of defaultImageUrl
+    NSString *defaultImageUrl = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSURL *defaultImageDisplayUrl;
+    defaultImageDisplayUrl = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/defaultImage%@.png", defaultImageUrl,[NSDate date]]];
+    NSData *imageData = UIImagePNGRepresentation(editedImage);
+    [imageData writeToURL:defaultImageDisplayUrl atomically:YES];
+    self.defaultImagePathString = [defaultImageDisplayUrl absoluteString];
+    [cropperViewController dismissViewControllerAnimated:YES completion:^{
+        self.edittedImage = YES;
+        self.defaultImage = editedImage;
+        NSIndexPath *rowToReload = [NSIndexPath indexPathForRow:0 inSection:0];
+        NSArray *rowsToReload = [NSArray arrayWithObjects:rowToReload, nil];
+        [self.tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:YES];
+    }];
+}
+
+- (void)imageCropperDidCancel:(ImageCropperViewController *)cropperViewController
+{
+    [cropperViewController dismissViewControllerAnimated:YES completion:^{
+    }];
+}
+
+#pragma mark camera utility
+- (BOOL) isCameraAvailable {
+    return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+}
+
+- (BOOL) isRearCameraAvailable {
+    return [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear];
+}
+
+- (BOOL) isFrontCameraAvailable {
+    return [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront];
+}
+
+- (BOOL) doesCameraSupportTakingPhotos {
+    return [self cameraSupportsMedia:(__bridge NSString *)kUTTypeImage sourceType:UIImagePickerControllerSourceTypeCamera];
+}
+
+- (BOOL) isPhotoLibraryAvailable
+{
+    return [UIImagePickerController isSourceTypeAvailable:
+            UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+- (BOOL) canUserPickPhotosFromPhotoLibrary
+{
+    return [self
+            cameraSupportsMedia:(__bridge NSString *)kUTTypeImage sourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+- (BOOL) cameraSupportsMedia:(NSString *)paramMediaType sourceType:(UIImagePickerControllerSourceType)paramSourceType
+{
+    __block BOOL result = NO;
+    if ([paramMediaType length] == 0) {
+        return NO;
+    }
+    NSArray *availableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:paramSourceType];
+    [availableMediaTypes enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL *stop) {
+        NSString *mediaType = (NSString *)obj;
+        if ([mediaType isEqualToString:paramMediaType]){
+            result = YES;
+            *stop= YES;
+        }
+    }];
+    return result;
+}
+
+#pragma mark image scale utility
+- (UIImage *)imageByScalingToMaxSize:(UIImage *)sourceImage
+{
+    if (sourceImage.size.width < ScreenWidth) return sourceImage;
+    CGFloat btWidth = 0.0f;
+    CGFloat btHeight = 0.0f;
+    if (sourceImage.size.width > sourceImage.size.height) {
+        btHeight = ScreenWidth;
+        btWidth = sourceImage.size.width * (ScreenWidth / sourceImage.size.height);
+    } else {
+        btWidth = ScreenWidth;
+        btHeight = sourceImage.size.height * (ScreenWidth / sourceImage.size.width);
+    }
+    CGSize targetSize = CGSizeMake(btWidth, btHeight);
+    return [self imageByScalingAndCroppingForSourceImage:sourceImage targetSize:targetSize];
+}
+
+- (UIImage *)imageByScalingAndCroppingForSourceImage:(UIImage *)sourceImage targetSize:(CGSize)targetSize
+{
+    UIImage *newImage = nil;
+    CGSize imageSize = sourceImage.size;
+    CGFloat width = imageSize.width;
+    CGFloat height = imageSize.height;
+    CGFloat targetWidth = targetSize.width;
+    CGFloat targetHeight = targetSize.height;
+    CGFloat scaleFactor = 0.0;
+    CGFloat scaledWidth = targetWidth;
+    CGFloat scaledHeight = targetHeight;
+    CGPoint thumbnailPoint = CGPointMake(0.0,0.0);
+    if (CGSizeEqualToSize(imageSize, targetSize) == NO)
+    {
+        CGFloat widthFactor = targetWidth / width;
+        CGFloat heightFactor = targetHeight / height;
+        
+        if (widthFactor > heightFactor) {
+            scaleFactor = widthFactor;
+        } else {
+            scaleFactor = heightFactor;
+            scaledWidth  = width * scaleFactor;
+            scaledHeight = height * scaleFactor;
+        }
+        // center the image
+        if (widthFactor > heightFactor)
+        {
+            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
+        } else if (widthFactor < heightFactor)
+        {
+            thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
+        }
+    }
+    UIGraphicsBeginImageContext(targetSize); // this will crop
+    CGRect thumbnailRect = CGRectZero;
+    thumbnailRect.origin = thumbnailPoint;
+    thumbnailRect.size.width  = scaledWidth;
+    thumbnailRect.size.height = scaledHeight;
+    
+    [sourceImage drawInRect:thumbnailRect];
+    
+    newImage = UIGraphicsGetImageFromCurrentImageContext();
+    if(newImage == nil) NSLog(@"could not scale image");
+    
+    //pop the context to get back to the default
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+#pragma mark - editAlbum
+- (void)editAlbum:(UIButton *)btn
+{
+    // Show saved photos on top
+    self.ipc.shouldShowSavedPhotosOnTop = YES;
+    self.ipc.shouldChangeStatusBarStyle = YES;
+    self.ipc.selection = self.selectedPhotos;
+    
+    // Custom toolbar items
+    AGIPCToolbarItem *selectAll = [[AGIPCToolbarItem alloc] initWithBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"+ 选 择 全 部" style:UIBarButtonItemStyleBordered target:nil action:nil] andSelectionBlock:^BOOL(NSUInteger index, ALAsset *asset) {
+        return YES;
+    }];
+    AGIPCToolbarItem *flexible = [[AGIPCToolbarItem alloc] initWithBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] andSelectionBlock:nil];
+    
+    AGIPCToolbarItem *deselectAll = [[AGIPCToolbarItem alloc] initWithBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"- 全 部 不 选" style:UIBarButtonItemStyleBordered target:nil action:nil] andSelectionBlock:^BOOL(NSUInteger index, ALAsset *asset) {
+        return NO;
+    }];
+    self.ipc.toolbarItemsForManagingTheSelection = @[selectAll,  flexible, deselectAll];
+    NSLog(@"successed");
+    [self presentViewController:self.ipc animated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:^(){
+    }];
+}
+
+#pragma mark - AGImagePickerControllerDelegate methods
+- (NSUInteger)agImagePickerController:(AGImagePickerController *)picker
+         numberOfItemsPerRowForDevice:(AGDeviceType)deviceType
+              andInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if (deviceType == AGDeviceTypeiPad) {
+        if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+            return 7;
+        } else {
+            return 6;
+        }
+    } else {
+        if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+            return 5;
+        } else {
+            return 4;
+        }
+    }
+}
+
+- (BOOL)agImagePickerController:(AGImagePickerController *)picker shouldDisplaySelectionInformationInSelectionMode:(AGImagePickerControllerSelectionMode)selectionMode {
+    return (selectionMode == AGImagePickerControllerSelectionModeSingle ? NO : YES);
+}
+
+- (BOOL)agImagePickerController:(AGImagePickerController *)picker shouldShowToolbarForManagingTheSelectionInSelectionMode:(AGImagePickerControllerSelectionMode)selectionMode {
+    return (selectionMode == AGImagePickerControllerSelectionModeSingle ? NO : YES);
+}
+
+- (AGImagePickerControllerSelectionBehaviorType)selectionBehaviorInSingleSelectionModeForAGImagePickerController:(AGImagePickerController *)picker {
+    return AGImagePickerControllerSelectionBehaviorTypeRadio;
 }
 
 - (void)recordButtonTapped:(TextAndRecordCell *)cell

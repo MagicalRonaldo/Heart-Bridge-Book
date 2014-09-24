@@ -65,7 +65,7 @@
         self.imageViewPhoto.image = [UIImage imageNamed:@"08.png"];
     };
     [viewImageScope addSubview:self.imageViewPhoto];
-
+    
     
     UIButton *buttonSetPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     buttonSetPhoto.frame = CGRectMake(190, 20, ScreenWidth - 210, 50);
@@ -752,17 +752,17 @@
         if (self.edittedNameAudio) {
             [contacter setNameAudioPath:namePathString];
         } else {
-        [contacter setNameAudioPath:self.contact.nameAudioPath];
+            [contacter setNameAudioPath:self.contact.nameAudioPath];
         }
     } else {
         [contacter setNameAudioPath:namePathString];
     }
-
+    
     if (self.editContact) {
         if (self.edittedTelephoneAudio) {
             [contacter setTelephoneNumberAudioPath:telephonePathString];
         } else {
-        [contacter setTelephoneNumberAudioPath:self.contact.telephoneNumberAudioPath];
+            [contacter setTelephoneNumberAudioPath:self.contact.telephoneNumberAudioPath];
         }
     } else {
         [contacter setTelephoneNumberAudioPath:telephonePathString];
@@ -772,7 +772,7 @@
         if (self.edittedAdressAudio) {
             [contacter setAddressAudioPath:addressPathString];
         } else {
-        [contacter setAddressAudioPath:self.contact.addressAudioPath];
+            [contacter setAddressAudioPath:self.contact.addressAudioPath];
         }
     } else {
         [contacter setAddressAudioPath:addressPathString];

@@ -13,7 +13,7 @@
 #import "AGImagePickerController.h"
 #import "Contact.h"
 
-@interface HandleContactViewController : HBBaseViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface HandleContactViewController : HBBaseViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) Contact *contact;
 

@@ -23,6 +23,7 @@
     if (self) {
         // Custom initialization
         self.navigationBar.translucent = NO;
+        self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
         if (![APPManager lowThanIOS7]) {
             self.navigationBar.barTintColor = [UIColor brownColor];
         } else {

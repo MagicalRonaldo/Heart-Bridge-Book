@@ -20,19 +20,17 @@
         self.defaultContactImage.image = [UIImage imageNamed:@"08.png"];
         [self.contentView addSubview:self.defaultContactImage];
         
-        UIButton *buttonSetPhoto = [UIButton buttonTextColor:[UIColor brownColor] cordius:2.0 boderWidth:1.0];
-        buttonSetPhoto.frame = CGRectMake(190, 30, ScreenWidth - 210, 50);
-        [buttonSetPhoto setTitle:@"设 置 头 像" forState:(UIControlStateNormal)];
-        buttonSetPhoto.titleLabel.font = [UIFont H2Font];
-//        [buttonSetPhoto addTarget:self action:@selector(editDefaultImage:) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:buttonSetPhoto];
+        self.selectDefaultContactImage = [UIButton buttonTextColor:[UIColor brownColor] cordius:2.0 boderWidth:1.0];
+        self.selectDefaultContactImage.frame = CGRectMake(190, 30, ScreenWidth - 210, 50);
+        [self.selectDefaultContactImage setTitle:@"设 置 头 像" forState:(UIControlStateNormal)];
+        self.selectDefaultContactImage.titleLabel.font = [UIFont H2Font];
+        [self.contentView addSubview:self.selectDefaultContactImage];
         
-        UIButton *buttonAddPhoto = [UIButton buttonTextColor:[UIColor brownColor] cordius:2.0 boderWidth:1.0];
-        buttonAddPhoto.frame = CGRectMake(190, 100, ScreenWidth - 210, 50);
-        [buttonAddPhoto setTitle:@"编 辑 相 册" forState:(UIControlStateNormal)];
-        buttonAddPhoto.titleLabel.font = [UIFont H2Font];
-//        [buttonAddPhoto addTarget:self action:@selector(editAlbum:) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:buttonAddPhoto];
+        self.contactAlbum = [UIButton buttonTextColor:[UIColor brownColor] cordius:2.0 boderWidth:1.0];
+        self.contactAlbum.frame = CGRectMake(190, 100, ScreenWidth - 210, 50);
+        [self.contactAlbum setTitle:@"编 辑 相 册" forState:(UIControlStateNormal)];
+        self.contactAlbum.titleLabel.font = [UIFont H2Font];
+        [self.contentView addSubview:self.contactAlbum];
     }
     return self;
 }

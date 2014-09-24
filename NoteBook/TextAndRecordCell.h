@@ -9,11 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "HBTableViewCell.h"
 
+@class TextAndRecordCell;
+
+@protocol InfoCellDelegate <NSObject>
+
+@optional
+- (void)recordButtonTapped: (TextAndRecordCell *)cell;
+- (void)playButtonTapped:(TextAndRecordCell *)cell;
+@end
+
 @interface TextAndRecordCell : HBTableViewCell
 
 @property (nonatomic, strong) UITextField *infoTextField;
 @property (nonatomic, strong) UIButton *recordButton;
 @property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, strong) UILabel *infoLabel;
+@property (nonatomic, strong) id<InfoCellDelegate> delegate;
 
 @end

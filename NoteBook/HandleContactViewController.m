@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "AGIPCToolbarItem.h"
 #import "ImageCropperViewController.h"
+#import "RecordAndPlayViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
@@ -106,7 +107,7 @@
     
     UIButton *contactAlbum = [UIButton buttonTextColor:[UIColor brownColor] cordius:2.0 boderWidth:1.0];
     contactAlbum.frame = CGRectMake(20, 110, ScreenWidth - 40, 40);
-    [contactAlbum setTitle:@"编 辑 相 册" forState:(UIControlStateNormal)];
+    [contactAlbum setTitle:@"编 辑 相 册" forState:UIControlStateNormal];
     contactAlbum.titleLabel.font = [UIFont H2Font];
     [contactAlbum addTarget:self action:@selector(editAlbum:) forControlEvents:UIControlEventTouchUpInside];
     [footerView addSubview:contactAlbum];
@@ -447,7 +448,11 @@
 
 - (void)recordButtonTapped:(TextAndRecordCell *)cell
 {
-    NSLog(@"1111111111");
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    RecordAndPlayViewController *recordVC = [[RecordAndPlayViewController alloc] init];
+    recordVC.recordType = indexPath.section;
+    [self.navigationController presentViewController:recordVC animated:YES completion:nil];
 }
 
 - (void)playButtonTapped:(TextAndRecordCell *)cell

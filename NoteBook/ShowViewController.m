@@ -46,7 +46,6 @@
     
     
     UIView *viewNameScope = [[UIView alloc] initWithFrame:CGRectMake(0, 300, ScreenWidth, 44)];
-//    viewNameScope.backgroundColor = [UIColor redColor];
     [self.scrollViewMain addSubview:viewNameScope];
     UITapGestureRecognizer *nameTapRecognizer = [[UITapGestureRecognizer alloc]
                                                  initWithTarget:self action:@selector(nameTapped:)];
@@ -113,7 +112,7 @@
     
     UIButton *buttonSave = [UIButton buttonWithType:UIButtonTypeSystem];
     buttonSave.frame = CGRectMake(30, 440, ScreenWidth - 60, 50);
-    [buttonSave setTitle:@"查     看     相     册" forState:(UIControlStateNormal)];
+    [buttonSave setTitle:@"查     看     相     册" forState:UIControlStateNormal];
     [self.scrollViewMain addSubview:buttonSave];
     
     self.scrollViewMain.contentSize = CGSizeMake(ScreenWidth,ScreenHeight-64);

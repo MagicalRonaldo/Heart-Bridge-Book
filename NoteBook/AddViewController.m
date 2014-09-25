@@ -69,13 +69,13 @@
     
     UIButton *buttonSetPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     buttonSetPhoto.frame = CGRectMake(190, 20, ScreenWidth - 210, 50);
-    [buttonSetPhoto setTitle:@"设 置 头 像" forState:(UIControlStateNormal)];
+    [buttonSetPhoto setTitle:@"设 置 头 像" forState:UIControlStateNormal];
     [buttonSetPhoto addTarget:self action:@selector(editDefaultImage:) forControlEvents:UIControlEventTouchUpInside];
     [viewImageScope addSubview:buttonSetPhoto];
     
     UIButton *buttonAddPhoto = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     buttonAddPhoto.frame = CGRectMake(190, 90, ScreenWidth - 210, 50);
-    [buttonAddPhoto setTitle:@"编 辑 相 册" forState:(UIControlStateNormal)];
+    [buttonAddPhoto setTitle:@"编 辑 相 册" forState:UIControlStateNormal];
     [buttonAddPhoto addTarget:self action:@selector(editAlbum:) forControlEvents:UIControlEventTouchUpInside];
     [viewImageScope addSubview:buttonAddPhoto];
     
@@ -115,13 +115,13 @@
     
     UIButton *buttonNameRecord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     buttonNameRecord.frame = CGRectMake(30 + labelWidth + 20, 70, buttonWidth, buttonHeight);
-    [buttonNameRecord setTitle:@"录  音" forState:(UIControlStateNormal)];
+    [buttonNameRecord setTitle:@"录  音" forState:UIControlStateNormal];
     [buttonNameRecord addTarget:self action:@selector(nameBtnUpInside:)  forControlEvents:UIControlEventTouchUpInside];
     [viewNameScope addSubview:buttonNameRecord];
     
     UIButton *buttonNamePlay = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     buttonNamePlay.frame = CGRectMake(30 + labelWidth + buttonWidth + 40, 70, buttonWidth, buttonHeight);
-    [buttonNamePlay setTitle:@"播  放" forState:(UIControlStateNormal)];
+    [buttonNamePlay setTitle:@"播  放" forState:UIControlStateNormal];
     [buttonNamePlay addTarget:self action:@selector(nameBoFangBtnUpInside:) forControlEvents:UIControlEventTouchUpInside];
     [viewNameScope addSubview:buttonNamePlay];
     
@@ -155,13 +155,13 @@
     
     UIButton *buttonTeleRecord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     buttonTeleRecord.frame = CGRectMake(30 + labelWidth + 20, 70, buttonWidth, buttonHeight);
-    [buttonTeleRecord setTitle:@"录  音" forState:(UIControlStateNormal)];
+    [buttonTeleRecord setTitle:@"录  音" forState:UIControlStateNormal];
     [buttonTeleRecord addTarget:self action:@selector(telephoneBtnUpInside:)  forControlEvents:UIControlEventTouchUpInside];
     [viewTeleScope addSubview:buttonTeleRecord];
     
     UIButton *buttonTelePlay = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     buttonTelePlay.frame = CGRectMake(30 + labelWidth + buttonWidth + 40, 70, buttonWidth, buttonHeight);
-    [buttonTelePlay setTitle:@"播  放" forState:(UIControlStateNormal)];
+    [buttonTelePlay setTitle:@"播  放" forState:UIControlStateNormal];
     [buttonTelePlay addTarget:self action:@selector(telephoneBoFangBtnUpInside:) forControlEvents:UIControlEventTouchUpInside];
     [viewTeleScope addSubview:buttonTelePlay];
     
@@ -193,13 +193,13 @@
     
     UIButton *buttonAddressRecord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     buttonAddressRecord.frame = CGRectMake(30 + labelWidth + 20, 70, buttonWidth, buttonHeight);
-    [buttonAddressRecord setTitle:@"录  音" forState:(UIControlStateNormal)];
+    [buttonAddressRecord setTitle:@"录  音" forState:UIControlStateNormal];
     [buttonAddressRecord addTarget:self action:@selector(addressBtnUpInside:)  forControlEvents:UIControlEventTouchUpInside];
     [viewAddressScope addSubview:buttonAddressRecord];
     
     UIButton *buttonAddressPlay = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     buttonAddressPlay.frame = CGRectMake(30 + labelWidth + buttonWidth + 40, 70, buttonWidth, buttonHeight);
-    [buttonAddressPlay setTitle:@"播  放" forState:(UIControlStateNormal)];
+    [buttonAddressPlay setTitle:@"播  放" forState:UIControlStateNormal];
     [buttonAddressPlay addTarget:self action:@selector(addressBoFangBtnUpInside:) forControlEvents:UIControlEventTouchUpInside];
     [viewAddressScope addSubview:buttonAddressPlay];
     
@@ -211,7 +211,7 @@
     UIButton *buttonSave = [UIButton buttonWithType:UIButtonTypeInfoLight];
     buttonSave.frame = CGRectMake(20, 600, ScreenWidth - 40, buttonHeight + 10);
     buttonSave.backgroundColor = [UIColor colorWithRed:0.2 green:0.8 blue:0.8 alpha:0.9];
-    [buttonSave setTitle:@"保                            存" forState:(UIControlStateNormal)];
+    [buttonSave setTitle:@"保                            存" forState:UIControlStateNormal];
     [buttonSave addTarget:self action:@selector(saveContactUpInSide:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollViewMain addSubview:buttonSave];
     
@@ -234,7 +234,7 @@
     
     self.doRecord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.doRecord.frame = CGRectMake(60, 300, 200, 50);
-    [self.doRecord setTitle:@"开      始      录      音" forState:(UIControlStateNormal)];
+    [self.doRecord setTitle:@"开      始      录      音" forState:UIControlStateNormal];
     [self.doRecord addTarget:self action:@selector(recordBtnDown:) forControlEvents:UIControlEventTouchDown];
     [self.doRecord addTarget:self action:@selector(recordBtnDragUp:) forControlEvents:UIControlEventTouchDragOutside];
     [self.doRecord addTarget:self action:@selector(recordBtnUpInside:) forControlEvents:UIControlEventTouchUpInside];
@@ -242,13 +242,13 @@
     
     self.doTry = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.doTry.frame = CGRectMake(60, 365, 200, 50);
-    [self.doTry setTitle:@"试      听      录      音" forState:(UIControlStateNormal)];
+    [self.doTry setTitle:@"试      听      录      音" forState:UIControlStateNormal];
     [self.doTry addTarget:self action:@selector(playBtnUpInside:) forControlEvents:UIControlEventTouchUpInside];
     [self.viewRecord addSubview:self.doTry];
     
     self.confirm = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.confirm.frame = CGRectMake(60, 430, 200, 50);
-    [self.confirm setTitle:@"确      认      保      存" forState:(UIControlStateNormal)];
+    [self.confirm setTitle:@"确      认      保      存" forState:UIControlStateNormal];
     [self.confirm addTarget:self action:@selector(btnSaveUpInside:) forControlEvents:UIControlEventTouchUpInside];
     [self.viewRecord addSubview:self.confirm];
 

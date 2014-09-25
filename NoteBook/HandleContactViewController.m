@@ -15,6 +15,7 @@
 
 #import "TextAndRecordCell.h"
 #import "ContactImageCell.h"
+#import "UIImageView+HB.h"
 #import "UIButton+HB.h"
 #import "UIFont+HB.h"
 #import "UIView+HB.h"
@@ -77,6 +78,7 @@
     self.myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [self editAlbumInitial];
     
+    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -90,11 +92,32 @@
     //将触摸事件添加到当前view
     [self.tableView addGestureRecognizer:tapGestureRecognizer];
     
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 80.0)];
+    
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 250.0)];
     footerView.backgroundColor = [UIColor clearColor];
-    UIButton *saveButton = [UIButton buttonTextColor:[UIColor brownColor] cordius:2.0 boderWidth:1.0];
-    saveButton.frame = CGRectMake(0, 10, 280, 40);
-    [saveButton setTitle:@"保          存" forState:UIControlStateNormal];
+    
+    UIScrollView *albumImages = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 100)];
+    for (int i = 0; i < 3; i++) {
+        UIImageView *contactImage = [UIImageView imageViewCordius:5.0];
+        contactImage.frame = CGRectMake(100 * i + 10, 10, 90, 90);
+        [albumImages addSubview:contactImage];
+    }
+    [footerView addSubview:albumImages];
+    
+    UIButton *contactAlbum = [UIButton buttonTextColor:[UIColor brownColor] cordius:2.0 boderWidth:1.0];
+    contactAlbum.frame = CGRectMake(20, 110, ScreenWidth - 40, 40);
+    [contactAlbum setTitle:@"编 辑 相 册" forState:(UIControlStateNormal)];
+    contactAlbum.titleLabel.font = [UIFont H2Font];
+    [contactAlbum addTarget:self action:@selector(editAlbum:) forControlEvents:UIControlEventTouchUpInside];
+    [footerView addSubview:contactAlbum];
+    
+    UIView *line = [UIView lineViewWithXoff:5 color:[UIColor GrayLine1Color] height:0.5];
+    line.top = contactAlbum.bottom + 10;
+    [footerView addSubview:line];
+    
+    UIButton *saveButton = [UIButton buttonNomalColor:[UIColor brownColor] highLightColor:[UIColor redColor] coRadius:2.0];
+    saveButton.frame = CGRectMake(0, 170, 280, 50);
+    [saveButton setTitle:@"保 存 联 系 人" forState:UIControlStateNormal];
     saveButton.titleLabel.font = [UIFont H2Font];
     saveButton.centerX = footerView.centerX;
     [footerView addSubview:saveButton];
@@ -138,7 +161,6 @@
         }
         
         [cell.selectDefaultContactImage addTarget:self action:@selector(editDefaultImage:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contactAlbum addTarget:self action:@selector(editAlbum:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     } else {
         TextAndRecordCell *cell = [[TextAndRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -437,18 +459,6 @@
 {
     [self.tableView endEditing:YES];
 }
-
-//- (void)textFieldDidBeginEditing:(UITextField *)textField {
-//    NSInteger i = textField.frame.origin.y + (64 +215) - ScreenHeight;
-//    if (i > 0) {
-//        [UIView beginAnimations:nil context:NULL];
-//        [UIView setAnimationDelegate:self];
-//        [UIView setAnimationDuration:0.5];
-//        [UIView setAnimationBeginsFromCurrentState:YES];
-//        self.tableView.contentOffset = CGPointMake(0, textField.frame.origin.y + (64 +215));
-//        [UIView commitAnimations];
-//    }
-//}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

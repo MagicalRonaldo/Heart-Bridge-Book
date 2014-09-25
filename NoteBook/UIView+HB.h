@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIColor+HB.h"
 
 @interface UIView (HB)
 
@@ -31,5 +32,7 @@
 - (void)setOrigin:(CGPoint)point;
 - (void)setAddTop:(CGFloat)top;
 - (void)setAddLeft:(CGFloat)left;
+
++ (UIView *)lineViewWithXoff:(CGFloat)x color:(UIColor *)color height:(CGFloat)width;
 
 @end

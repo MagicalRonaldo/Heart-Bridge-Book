@@ -73,6 +73,8 @@
 		49DBEC0119CAC0CF00DAC6E2 /* HandleContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DBEC0019CAC0CF00DAC6E2 /* HandleContactViewController.m */; };
 		49DBEC0419CAC26900DAC6E2 /* HBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DBEC0319CAC26900DAC6E2 /* HBBaseViewController.m */; };
 		49DDD3AD1883A8E500761532 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DDD3AC1883A8E500761532 /* AddViewController.m */; };
+		49ED895619D3A8C4005934C4 /* UIImageView+HB.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ED895519D3A8C4005934C4 /* UIImageView+HB.m */; };
+		49ED895D19D3C6B8005934C4 /* setIma.png in Resources */ = {isa = PBXBuildFile; fileRef = 49ED895C19D3C6B8005934C4 /* setIma.png */; };
 		49F5D34A19C918E800CA35CD /* BaseLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D34919C918E800CA35CD /* BaseLineView.m */; };
 		49F5D34E19C91B9B00CA35CD /* ContactImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D34D19C91B9B00CA35CD /* ContactImageCell.m */; };
 		49F5D35119C9227E00CA35CD /* TextAndRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F5D35019C9227E00CA35CD /* TextAndRecordCell.m */; };
@@ -194,6 +196,9 @@
 		49DBEC0319CAC26900DAC6E2 /* HBBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBBaseViewController.m; sourceTree = "<group>"; };
 		49DDD3AB1883A8E500761532 /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
 		49DDD3AC1883A8E500761532 /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
+		49ED895419D3A8C4005934C4 /* UIImageView+HB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HB.h"; sourceTree = "<group>"; };
+		49ED895519D3A8C4005934C4 /* UIImageView+HB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HB.m"; sourceTree = "<group>"; };
+		49ED895C19D3C6B8005934C4 /* setIma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setIma.png; sourceTree = "<group>"; };
 		49F5D34819C918E800CA35CD /* BaseLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLineView.h; sourceTree = "<group>"; };
 		49F5D34919C918E800CA35CD /* BaseLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLineView.m; sourceTree = "<group>"; };
 		49F5D34C19C91B9B00CA35CD /* ContactImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactImageCell.h; sourceTree = "<group>"; };
@@ -379,6 +384,8 @@
 				49F5D35619C92F6200CA35CD /* UITextField+HB.m */,
 				49DBEBFB19CA6BF600DAC6E2 /* UIButton+HB.h */,
 				49DBEBFC19CA6BF600DAC6E2 /* UIButton+HB.m */,
+				49ED895419D3A8C4005934C4 /* UIImageView+HB.h */,
+				49ED895519D3A8C4005934C4 /* UIImageView+HB.m */,
 			);
 			name = BaseView;
 			sourceTree = "<group>";
@@ -430,6 +437,7 @@
 		497E82A918AE334000393EA3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				49ED895C19D3C6B8005934C4 /* setIma.png */,
 				49D4251219B9D3950043DD5C /* button_blue@2x.png */,
 				4918F2EA19B4AD9100A8C686 /* Icon.png */,
 				4918F2EB19B4AD9100A8C686 /* Icon@2x.png */,
@@ -590,6 +598,7 @@
 				4918F2EC19B4AD9100A8C686 /* Icon.png in Resources */,
 				4908DA4E18BAE23500A75F80 /* record_animate_11.png in Resources */,
 				4908DA4C18BAE23500A75F80 /* record_animate_09.png in Resources */,
+				49ED895D19D3C6B8005934C4 /* setIma.png in Resources */,
 				4908DA5118BAE23500A75F80 /* record_animate_14.png in Resources */,
 				4918F2ED19B4AD9100A8C686 /* Icon@2x.png in Resources */,
 				4908DA4518BAE23500A75F80 /* record_animate_02.png in Resources */,
@@ -623,6 +632,7 @@
 				49F5D34E19C91B9B00CA35CD /* ContactImageCell.m in Sources */,
 				49F5D35119C9227E00CA35CD /* TextAndRecordCell.m in Sources */,
 				49F5D35419C9254600CA35CD /* UILabel+HB.m in Sources */,
+				49ED895619D3A8C4005934C4 /* UIImageView+HB.m in Sources */,
 				49DDD3AD1883A8E500761532 /* AddViewController.m in Sources */,
 				49F5D34A19C918E800CA35CD /* BaseLineView.m in Sources */,
 				491215C319B8A25100E576BA /* UIColor+HB.m in Sources */,

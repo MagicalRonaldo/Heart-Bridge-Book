@@ -10,11 +10,11 @@
 #import "HBTableViewCell.h"
 #import "UILabel+HB.h"
 #import "UIButton+HB.h"
+#import "UIImageView+HB.h"
 
 @interface ContactImageCell: HBTableViewCell
 
 @property (nonatomic, strong) UIButton *selectDefaultContactImage;
-@property (nonatomic, strong) UIButton *contactAlbum;
 @property (nonatomic, strong) UIImageView *defaultContactImage;
 @property (nonatomic) BOOL isEditContact;
 

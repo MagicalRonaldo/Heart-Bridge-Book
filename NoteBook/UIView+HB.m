@@ -134,4 +134,10 @@
     self.frame = frame;
 }
 
++ (UIView *)lineViewWithXoff:(CGFloat)x color:(UIColor *)color height:(CGFloat) height{
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(x, 1, ScreenWidth - 2 * x, height)];
+    lineView.backgroundColor = color;
+    return lineView;
+}
+
 @end

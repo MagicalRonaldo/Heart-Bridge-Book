@@ -129,8 +129,7 @@
     viewNameLine.backgroundColor = [UIColor grayColor];
     [viewNameScope addSubview:viewNameLine];
     
-    
-    
+
     UIView *viewTeleScope = [[UIView alloc] initWithFrame:CGRectMake(0, 310, ScreenWidth, 128)];
     [self.scrollViewMain addSubview:viewTeleScope];
     
@@ -473,8 +472,6 @@
     return newImage;
 }
 
-
-
 #pragma mark - recordTag
 - (void)nameBtnUpInside:(UIButton *)btn
 {
@@ -557,8 +554,8 @@
     [recorder updateMeters];//刷新音量数据
     double lowPassResults = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
     NSLog(@"%lf",lowPassResults);
-   
-    if (0<lowPassResults<=0.06) {
+    
+    if (0 < lowPassResults <= 0.06) {
         [self.imageViewRecorder setImage:[UIImage imageNamed:@"record_animate_01.png"]];
     } else if (0.06<lowPassResults<=0.12) {
         [self.imageViewRecorder setImage:[UIImage imageNamed:@"record_animate_02.png"]];

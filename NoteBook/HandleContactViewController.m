@@ -452,7 +452,7 @@
     
     RecordAndPlayViewController *recordVC = [[RecordAndPlayViewController alloc] init];
     recordVC.recordType = indexPath.section;
-    [self.navigationController presentViewController:recordVC animated:YES completion:nil];
+    [self.navigationController pushViewController:recordVC animated:YES];
 }
 
 - (void)playButtonTapped:(TextAndRecordCell *)cell

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 enum{
     ENC_AAC = 1,
@@ -18,7 +19,7 @@ enum{
     ENC_PCM = 6,
 } encodingTypes;
 
-@interface RecordAndPlayViewController : UIViewController
+@interface RecordAndPlayViewController : UIViewController<AVAudioRecorderDelegate>
 
 @property (nonatomic) NSInteger recordType;
 

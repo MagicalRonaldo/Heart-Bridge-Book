@@ -111,13 +111,8 @@
 {
     [self.doRecord setTitle:@"开      始      录      音" forState:UIControlStateNormal];
     double cTime = self.audioRecorder.currentTime;
-    if (1 < cTime < 180 ) {
-        //如果录制时间在1s到120s之间，则保存录音数据
-        [self.audioRecorder stop];
-        NSLog(@"已保存");
-    } else {
-        //删除记录的文件
-        [self.audioRecorder stop];
+    [self.audioRecorder stop];
+    if (cTime > 180 ) {
         [self.audioRecorder deleteRecording];
         NSLog(@"因录制的音频不符合条件，已删除");
     }

@@ -7,6 +7,7 @@
 //
 
 #import "HandleContactViewController.h"
+#import "Contact.h"
 #import "AppDelegate.h"
 #import "AGIPCToolbarItem.h"
 #import "ImageCropperViewController.h"
@@ -21,16 +22,24 @@
 #import "UIFont+HB.h"
 #import "UIView+HB.h"
 
-@interface HandleContactViewController ()<InfoCellDelegate, ImageCropperDelegate>
+@interface HandleContactViewController ()<InfoCellDelegate, ImageCropperDelegate, RecordFinishRelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) Contact *contact;
 @property (nonatomic, strong) AppDelegate *myDelegate;
 @property (nonatomic, strong) AGImagePickerController *ipc;
 @property (nonatomic, strong) NSMutableArray *selectedPhotos;
 @property (nonatomic, strong) NSString *defaultImagePathString;
+
+@property (nonatomic, strong) NSURL *nameAudioUrl;
+@property (nonatomic, strong) NSURL *telephoneAudioUrl;
+@property (nonatomic, strong) NSURL *addressAudioUrl;
+
 @property (nonatomic, strong) NSString *namePathString;
 @property (nonatomic, strong) NSString *telephonePathString;
 @property (nonatomic, strong) NSString *addressPathString;
+
+@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 
 @property (nonatomic) BOOL edittedImage;
 @property (nonatomic, strong) UIImage *defaultImage;
@@ -78,7 +87,6 @@
     //获取当前应用程序的委托（UIApplication sharedApplication为整个应用程序上下文）
     self.myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [self editAlbumInitial];
-    
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64)];
     self.tableView.delegate = self;
@@ -446,18 +454,69 @@
     return AGImagePickerControllerSelectionBehaviorTypeRadio;
 }
 
+
+#pragma mark record
+- (void)doFinishRecordWithUrl:(NSURL *)url tag:(NSInteger)i
+{
+    switch (i) {
+        case 1:
+        {
+            self.nameAudioUrl = url;
+            self.namePathString = [url absoluteString];
+            break;
+        }
+        
+        case 2:
+        {
+            self.telephoneAudioUrl = url;
+            self.telephonePathString = [url absoluteString];
+            break;
+        }
+        case 3:
+        {
+            self.addressAudioUrl = url;
+            self.addressPathString = [url absoluteString];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
 - (void)recordButtonTapped:(TextAndRecordCell *)cell
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
     RecordAndPlayViewController *recordVC = [[RecordAndPlayViewController alloc] init];
+    recordVC.recordDelegate = self;
     recordVC.recordType = indexPath.section;
     [self.navigationController pushViewController:recordVC animated:YES];
 }
 
 - (void)playButtonTapped:(TextAndRecordCell *)cell
 {
-    NSLog(@"22222222222");
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    NSURL *url;
+    switch (indexPath.section) {
+        case 1:
+            url = self.nameAudioUrl;
+            break;
+        case 2:
+            url = self.telephoneAudioUrl;
+            break;
+        case 3:
+            url = self.addressAudioUrl;
+            break;
+        default:
+            break;
+    }
+    if (self.audioPlayer.playing) {
+        [self.audioPlayer stop];
+        return;
+    }
+    
+    self.audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:url error:nil];
+    [self.audioPlayer play];
 }
 
 - (void)keyboardHide:(UITapGestureRecognizer*)tap

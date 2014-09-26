@@ -124,14 +124,17 @@
 {
     [self.doRecord setTitle:@"重      新      录      音" forState:UIControlStateNormal];
     double cTime = self.audioRecorder.currentTime;
-    [self.audioRecorder stop];
-    [[AVAudioSession sharedInstance] setActive:NO error:nil];
-    if (cTime > 180 || cTime < 0.5) {
+    if (0.5 < cTime < 150) {
+        [self.audioRecorder stop];
+        [[AVAudioSession sharedInstance] setActive:NO error:nil];
+        [self.timerForPitch invalidate];
+        self.timerForPitch = nil;
+    } else {
         [self.audioRecorder deleteRecording];
+        [self.audioRecorder stop];
+        [[AVAudioSession sharedInstance] setActive:NO error:nil];
         NSLog(@"因录制的音频不符合条件，已删除");
     }
-    [self.timerForPitch invalidate];
-    self.timerForPitch = nil;
 }
 
 - (void)playBtnUpInside:(UIButton *)playBtn
@@ -196,6 +199,9 @@
 - (void)btnSaveUpInside:(UIButton*)btn
 {
     [self.navigationController popViewControllerAnimated:YES];
+    if ([self.recordDelegate respondsToSelector:@selector(doFinishRecordWithUrl: tag:)]) {
+        [self.recordDelegate doFinishRecordWithUrl:self.url tag:self.recordType];
+    }
 }
 
 - (void)audioPathSetting
@@ -226,7 +232,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 @end

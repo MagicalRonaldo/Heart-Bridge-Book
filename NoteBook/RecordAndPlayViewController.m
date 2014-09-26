@@ -10,6 +10,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <QuartzCore/QuartzCore.h>
 #import "UIButton+HB.h"
+#import "UIFont+HB.h"
 
 @interface RecordAndPlayViewController ()
 
@@ -24,7 +25,7 @@
 @property (nonatomic, strong) AVAudioRecorder *audioRecorder;
 
 @property (nonatomic, strong) NSTimer *timerForPitch;
-@property (nonatomic, strong) NSMutableDictionary *recordSettings;
+@property (nonatomic, strong) NSDictionary *recordSettings;
 @property (nonatomic, strong) NSURL *url;
 
 @property (nonatomic) int recordEncoding;
@@ -36,8 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self audioPathSetting];
-    
+        
     self.viewRecord = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     self.viewRecord.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.9];
     [self.view addSubview:self.viewRecord];
@@ -72,47 +72,61 @@
     self.confirm = [UIButton buttonTextColor:[UIColor brownColor] cordius:2.0 boderWidth:1.0];
     self.confirm.frame = CGRectMake(60, 450, 200, 50);
     [self.confirm setTitle:@"确      认      保      存" forState:UIControlStateNormal];
+    self.confirm.titleLabel.font = [UIFont H2Font];
     [self.confirm addTarget:self action:@selector(btnSaveUpInside:) forControlEvents:UIControlEventTouchUpInside];
     [self.viewRecord addSubview:self.confirm];
 }
 
 - (void)recordBtnDown:(UIButton *)recordBtn
 {
-    [self.doRecord setTitle:@"正      在      录      音" forState:UIControlStateNormal];
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
+    [self.audioRecorder deleteRecording];
     self.audioRecorder = nil;
+    [self.doRecord setTitle:@"正      在      录      音" forState:UIControlStateNormal];
     
-    [self audioRecordSetting];
+    //设置和路径
+    self.recordSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                           [NSNumber numberWithFloat: 8000.0], AVSampleRateKey, //采样率
+                           [NSNumber numberWithInt: kAudioFormatLinearPCM], AVFormatIDKey,
+                           [NSNumber numberWithInt:16], AVLinearPCMBitDepthKey, //采样位数 默认 16
+                           [NSNumber numberWithInt: 1], AVNumberOfChannelsKey, //通道的数目
+                           [NSNumber numberWithInt: AVAudioQualityMedium], AVEncoderAudioQualityKey, //音频编码质量
+                           nil];
+    
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayAndRecord error:nil]; //支持播放与录音
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [self audioPathSetting];
     
     NSError *error = nil;
     self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:self.url settings:self.recordSettings error:&error];
-    self.audioRecorder.delegate = self;
+    self.audioRecorder.meteringEnabled = YES;
     if ([self.audioRecorder prepareToRecord]) {
-        self.audioRecorder.meteringEnabled = YES;
         [self.audioRecorder record];
-        self.timerForPitch =[NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(levelTimerCallback:) userInfo: nil repeats: YES];
-    } else {
-        
     }
+    self.timerForPitch = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(levelTimerCallback:) userInfo: nil repeats: YES];
 }
 
 -(void)recordBtnDragUp:(UIButton *)recordBtn
 {
     //删除录制文件
-    [self.audioRecorder stop];
+    [self.doRecord setTitle:@"重      新      录      音" forState:UIControlStateNormal];
+    if (self.audioRecorder == nil) {
+        return;
+    }
+    
     [self.audioRecorder deleteRecording];
+    [self.audioRecorder stop];
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
     [self.timerForPitch invalidate];
-    self.timerForPitch = nil;
     NSLog(@"取消发送");
 }
 
 -(void)recordBtnUpInside:(UIButton *)recordBtn
 {
-    [self.doRecord setTitle:@"开      始      录      音" forState:UIControlStateNormal];
+    [self.doRecord setTitle:@"重      新      录      音" forState:UIControlStateNormal];
     double cTime = self.audioRecorder.currentTime;
     [self.audioRecorder stop];
-    if (cTime > 180 ) {
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    if (cTime > 180 || cTime < 0.5) {
         [self.audioRecorder deleteRecording];
         NSLog(@"因录制的音频不符合条件，已删除");
     }
@@ -131,46 +145,9 @@
     [self.audioPlayer play];
 }
 
-- (void)audioRecordSetting
-{
-    self.recordSettings = [[NSMutableDictionary alloc] initWithCapacity:10];
-    if(self.recordEncoding == ENC_PCM)
-    {
-        [self.recordSettings setObject:[NSNumber numberWithInt: kAudioFormatLinearPCM] forKey: AVFormatIDKey];
-        [self.recordSettings setObject:[NSNumber numberWithFloat:44100.0] forKey: AVSampleRateKey];
-        [self.recordSettings setObject:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
-        [self.recordSettings setObject:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
-        [self.recordSettings setObject:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
-        [self.recordSettings setObject:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
-    } else {
-        NSNumber *formatObject;
-        switch (self.recordEncoding) {
-            case (ENC_AAC):
-                formatObject = [NSNumber numberWithInt: kAudioFormatMPEG4AAC];
-                break;
-            case (ENC_ALAC):
-                formatObject = [NSNumber numberWithInt: kAudioFormatAppleLossless];
-                break;
-            case (ENC_IMA4):
-                formatObject = [NSNumber numberWithInt: kAudioFormatAppleIMA4];
-                break;
-            case (ENC_ILBC):
-                formatObject = [NSNumber numberWithInt: kAudioFormatiLBC];
-                break;
-            case (ENC_ULAW):
-                formatObject = [NSNumber numberWithInt: kAudioFormatULaw];
-                break;
-            default:
-                formatObject = [NSNumber numberWithInt: kAudioFormatAppleIMA4];
-        }
-        
-        [self.recordSettings setObject:formatObject forKey: AVFormatIDKey];
-        [self.recordSettings setObject:[NSNumber numberWithFloat:44100.0] forKey: AVSampleRateKey];
-        [self.recordSettings setObject:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
-        [self.recordSettings setObject:[NSNumber numberWithInt:12800] forKey:AVEncoderBitRateKey];
-        [self.recordSettings setObject:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
-        [self.recordSettings setObject:[NSNumber numberWithInt: AVAudioQualityHigh] forKey: AVEncoderAudioQualityKey];
-    }
+#pragma mark AVAudioRecorderDelegate
+- (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
+    [[AVAudioSession sharedInstance] setActive:NO error:nil]; //关闭本次音频回话
 }
 
 - (void)levelTimerCallback:(NSTimer *)timer
@@ -224,18 +201,22 @@
 - (void)audioPathSetting
 {
     //路径设置
-    NSString *documentUrl = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileUrl = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *voicePath = [NSString stringWithFormat:@"%@/Voice", fileUrl];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:voicePath]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:voicePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
     switch (self.recordType) {
         case 1: {
-            self.url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/nameAudio%@.caf", documentUrl,[NSDate date]]];
+            self.url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/nameAudio%@.wav", voicePath,[NSDate date]]];
             break;
         }
         case 2: {
-            self.url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/telephoneAudio%@.caf", documentUrl,[NSDate date]]];
+            self.url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/telephoneAudio%@.wav", voicePath,[NSDate date]]];
             break;
         }
         default: {
-            self.url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/addressAudio%@.caf", documentUrl,[NSDate date]]];
+            self.url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/addressAudio%@.wav", voicePath,[NSDate date]]];
             break;
         }
     }

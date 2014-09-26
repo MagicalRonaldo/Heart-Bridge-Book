@@ -19,7 +19,7 @@ enum{
     ENC_PCM = 6,
 } encodingTypes;
 
-@interface RecordAndPlayViewController : UIViewController<AVAudioRecorderDelegate>
+@interface RecordAndPlayViewController : UIViewController<AVAudioPlayerDelegate,AVAudioRecorderDelegate>
 
 @property (nonatomic) NSInteger recordType;
 

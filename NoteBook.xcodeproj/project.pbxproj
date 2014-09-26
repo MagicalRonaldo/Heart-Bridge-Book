@@ -62,6 +62,8 @@
 		4918F2ED19B4AD9100A8C686 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4918F2EB19B4AD9100A8C686 /* Icon@2x.png */; };
 		4927B79419D0367000F04F93 /* BaseDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927B79319D0367000F04F93 /* BaseDeviceInfo.m */; };
 		4928635A18B4A11C000C11F2 /* ShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4928635918B4A11C000C11F2 /* ShowViewController.m */; };
+		49286FDE19D50E3400705456 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49286FDD19D50E3400705456 /* AudioToolbox.framework */; };
+		49286FE019D50E5200705456 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49286FDF19D50E5200705456 /* CoreAudio.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		497E82A518AE320200393EA3 /* ImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497E82A418AE320200393EA3 /* ImageCropperViewController.m */; };
 		499FAD55188EA63B009D2359 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499FAD54188EA63B009D2359 /* AVFoundation.framework */; };
 		49D4250719B99A3D0043DD5C /* APPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D4250619B99A3D0043DD5C /* APPManager.m */; };
@@ -177,6 +179,8 @@
 		4927B79319D0367000F04F93 /* BaseDeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDeviceInfo.m; sourceTree = "<group>"; };
 		4928635818B4A11C000C11F2 /* ShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowViewController.h; sourceTree = "<group>"; };
 		4928635918B4A11C000C11F2 /* ShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowViewController.m; sourceTree = "<group>"; };
+		49286FDD19D50E3400705456 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		49286FDF19D50E5200705456 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		497E82A418AE320200393EA3 /* ImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCropperViewController.m; sourceTree = "<group>"; };
 		497E82A618AE326C00393EA3 /* ImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCropperViewController.h; sourceTree = "<group>"; };
 		499FAD54188EA63B009D2359 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -219,6 +223,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49286FE019D50E5200705456 /* CoreAudio.framework in Frameworks */,
+				49286FDE19D50E3400705456 /* AudioToolbox.framework in Frameworks */,
 				499FAD55188EA63B009D2359 /* AVFoundation.framework in Frameworks */,
 				4905E93F188E191500DFC415 /* CoreData.framework in Frameworks */,
 				490D038518754B760094AD0F /* CoreGraphics.framework in Frameworks */,
@@ -287,6 +293,8 @@
 		490D038118754B760094AD0F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49286FDF19D50E5200705456 /* CoreAudio.framework */,
+				49286FDD19D50E3400705456 /* AudioToolbox.framework */,
 				499FAD54188EA63B009D2359 /* AVFoundation.framework */,
 				4905E93E188E191500DFC415 /* CoreData.framework */,
 				490D038218754B760094AD0F /* Foundation.framework */,

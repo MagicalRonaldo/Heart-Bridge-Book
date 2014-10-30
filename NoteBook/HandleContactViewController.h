@@ -12,6 +12,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-@interface HandleContactViewController : HBBaseViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, UIActionSheetDelegate,UIImagePickerControllerDelegate, AGImagePickerControllerDelegate, AVAudioPlayerDelegate>
+@interface HandleContactViewController : HBBaseViewController
 
 @end

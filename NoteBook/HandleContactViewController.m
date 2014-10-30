@@ -22,7 +22,7 @@
 #import "UIFont+HB.h"
 #import "UIView+HB.h"
 
-@interface HandleContactViewController ()<InfoCellDelegate, ImageCropperDelegate, RecordFinishRelegate>
+@interface HandleContactViewController ()<InfoCellDelegate, ImageCropperDelegate, RecordFinishRelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, UIActionSheetDelegate,UIImagePickerControllerDelegate, AGImagePickerControllerDelegate, UINavigationControllerDelegate,AVAudioPlayerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) Contact *contact;
@@ -100,7 +100,6 @@
     tapGestureRecognizer.cancelsTouchesInView = YES;
     //将触摸事件添加到当前view
     [self.tableView addGestureRecognizer:tapGestureRecognizer];
-    
     
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 250.0)];
     footerView.backgroundColor = [UIColor clearColor];

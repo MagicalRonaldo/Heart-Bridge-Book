@@ -207,11 +207,8 @@
     } else {
         NSLog(@"Delete successful!");
     }
-    
     [self.dataArray removeObjectAtIndex:indexPath.row];
 }
-
-
 
 - (void)call:(id)sender
 {

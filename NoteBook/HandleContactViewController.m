@@ -29,6 +29,7 @@
 @property (nonatomic, strong) AppDelegate *myDelegate;
 @property (nonatomic, strong) AGImagePickerController *ipc;
 @property (nonatomic, strong) NSMutableArray *selectedPhotos;
+@property (nonatomic, strong) NSMutableArray *textFieldInfo;
 @property (nonatomic, strong) NSString *defaultImagePathString;
 
 @property (nonatomic, strong) NSURL *nameAudioUrl;
@@ -43,7 +44,6 @@
 
 @property (nonatomic) BOOL edittedImage;
 @property (nonatomic, strong) UIImage *defaultImage;
-@property (nonatomic, strong) UITextField *currentTextField;
 
 @end
 
@@ -131,6 +131,8 @@
     [footerView addSubview:saveButton];
     
     self.tableView.tableFooterView = footerView;
+    
+    self.textFieldInfo = [NSMutableArray arrayWithArray:@[@[@""],@[@"10"],@[@"20"],@[@"30"]]];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -189,6 +191,8 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.infoTextField.delegate = self;
+        cell.infoTextField.tag = indexPath.section * 10 + indexPath.row;
+        [cell configCellWithText:self.textFieldInfo[indexPath.section][indexPath.row]];
         cell.delegate = self;
         return cell;
     }
@@ -453,7 +457,6 @@
     return AGImagePickerControllerSelectionBehaviorTypeRadio;
 }
 
-
 #pragma mark record
 - (void)doFinishRecordWithUrl:(NSURL *)url tag:(NSInteger)i
 {
@@ -527,6 +530,23 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    switch (textField.tag / 10) {
+        case 1:
+            [(NSMutableArray *)self.textFieldInfo[1] replaceObjectAtIndex:textField.tag % 10 withObject:textField.text];
+            break;
+        case 2:
+            [(NSMutableArray *)self.textFieldInfo[2] replaceObjectAtIndex:textField.tag % 10 withObject:textField.text];
+            break;
+        case 3:
+            [(NSMutableArray *)self.textFieldInfo[3] replaceObjectAtIndex:textField.tag % 10 withObject:textField.text];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -26,4 +26,6 @@
 @property (nonatomic, strong) UILabel *infoLabel;
 @property (nonatomic, strong) id<InfoCellDelegate> delegate;
 
+- (void)configCellWithText:(NSString *)text;
+
 @end

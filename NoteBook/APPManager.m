@@ -13,10 +13,11 @@
 + (BOOL)checkPhoneFunction
 {
     UIDevice *device = [UIDevice currentDevice];
-    if ([@"iPhone" isEqualToString:device.model])
+    if ([@"iPhone" isEqualToString:device.model]) {
         return YES;
-    else
+    } else {
         return NO;
+    }
 }
 
 + (NSString *)getBundleVersion
